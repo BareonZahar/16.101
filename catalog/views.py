@@ -70,11 +70,14 @@ def prosmotr(req,id1,id2,id3):
 
 
 def kuppodpiska(req):
-    group = Group.objects.get(id=1)
+    k1 = Status.objects.get(id=1)
+    print(k1)
+    k2 = k1.kino_set.all()
+    print(k2)
+    data = {'k1':k2}
+    return render(req, 'kuppodpiska.html',data)
 
-    film = Kino.objects.all()
-    print(group,film)
-    return render(req, 'kuppodpiska.html')
+
     # if id3 != 0:
     #     status = User.objects.get(id=id3)  # нашли юзера
     #     print(status)
@@ -131,7 +134,17 @@ def otsuper(req,type):
     grnew = Group.objects.get(id=type)  # находим новую подписку в таблице group
     grnew.user_set.add(user123)  # добовляем новую подписку
     k1 = grnew.name
-    data = {'otsuper':k1}
+    k2 = Status.objects.get(id=1)
+    print(k2)
+    k3 = k2.kino_set.all()
+    k9 = k3.count()
+    k4 = Status.objects.get(id=2)
+    k5 = k4.kino_set.all()
+    k10 = k5.count()
+    k6 = Status.objects.get(id=3)
+    k7 = k6.kino_set.all()
+    k8 = k7.count()
+    data = {'otsuper':k1,'k2':k3,'k3':k5,'k4':k7,'k5':k8,'k6':k9,'k7':k10}
     return render(req,'kuppodpiska.html',data)
 
 
@@ -143,8 +156,18 @@ def buy(req,type):
     grold.user_set.remove(user123)  # удаляем старую подписку
     grnew = Group.objects.get(id=type)  #   находим новую подписку в таблице group
     grnew.user_set.add(user123)   # добовляем новую подписку
+    k2 = Status.objects.get(id=1)
+    print(k2)
+    k3 = k2.kino_set.all()
+    k9 = k3.count()
+    k4 = Status.objects.get(id=2)
+    k5 = k4.kino_set.all()
+    k10 = k5.count()
+    k6 = Status.objects.get(id=3)
+    k7 = k6.kino_set.all()
+    k8 = k7.count()
     k1 = grnew.name
-    data = {'podpiska':k1}
+    data = {'podpiska':k1,'k2':k3,'k3':k5,'k4':k7,'k5':k8,'k6':k9,'k7':k10}
     return render(req,'kuppodpiska.html',data)
 
 from .form import SignUpform
