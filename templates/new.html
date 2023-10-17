@@ -6,7 +6,7 @@
               <h1>Фильмы по жанру</h1>
                   {% for i in ganry %}
                      <h2>{{ i.name }}</h2>
-                         <a href="{% url 'pro_ganry' i.id%}">
+                          <a href="{% url 'pro_ganry' i.id%}">
                              <button>Смотреть</button>
                          </a>
 {#                        <div class="card1">#}
@@ -17,6 +17,7 @@
 {#                     {% endfor %}#}
 {#                      </div>#}
                   {% endfor %}
+
      {% for one in k2 %}
         <h1 style="color: yellow">{{ one.title }}</h1>
 

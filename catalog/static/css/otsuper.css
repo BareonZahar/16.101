@@ -50,3 +50,10 @@ i{
     width: 100px;
     box-shadow: 0 10px yellow;
 }
+b{
+    color: darkblue;
+    font-size: 20px;
+}
+p{
+    font-size: 20px;
+}

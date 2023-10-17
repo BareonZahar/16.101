@@ -71,10 +71,15 @@ def prosmotr(req,id1,id2,id3):
 
 def kuppodpiska(req):
     k1 = Status.objects.get(id=1)
-    print(k1)
     k2 = k1.kino_set.all()
-    print(k2)
-    data = {'k1':k2}
+    free = k2.count()
+    k = Status.objects.get(id=2)
+    k3 = k.kino_set.all()
+    based = k3.count()
+    k5 = Status.objects.get(id=3)
+    k4 = k5.kino_set.all()
+    sup = k4.count()
+    data = {'k2':k2,'k3':k3,'k4':k4,'k6':free,'k7':based,'k5':sup}
     return render(req, 'kuppodpiska.html',data)
 
 
@@ -135,7 +140,6 @@ def otsuper(req,type):
     grnew.user_set.add(user123)  # добовляем новую подписку
     k1 = grnew.name
     k2 = Status.objects.get(id=1)
-    print(k2)
     k3 = k2.kino_set.all()
     k9 = k3.count()
     k4 = Status.objects.get(id=2)
@@ -149,25 +153,25 @@ def otsuper(req,type):
 
 
 def buy(req,type):
-    usid = req.user.id  #  находим номер текущего пользователя
-    user123 = User.objects.get(id=usid)  #  находим его в табличке юзер
-    statusnow = user123.groups.all()[0].id   #  находим номер его погдписке (группы)
+    usid = req.user.id  # находим номер текущего пользователя
+    user123 = User.objects.get(id=usid)  # находим его в табличке юзер
+    statusnow = user123.groups.all()[0].id  # находим номер его погдписке (группы)
     grold = Group.objects.get(id=statusnow)  # находим его подписку в таблице group
     grold.user_set.remove(user123)  # удаляем старую подписку
-    grnew = Group.objects.get(id=type)  #   находим новую подписку в таблице group
-    grnew.user_set.add(user123)   # добовляем новую подписку
+    grnew = Group.objects.get(id=type)  # находим новую подписку в таблице group
+    grnew.user_set.add(user123)  # добовляем новую подписку
+    k1 = grnew.name
     k2 = Status.objects.get(id=1)
     print(k2)
     k3 = k2.kino_set.all()
-    k9 = k3.count()
+    free = k3.count()
     k4 = Status.objects.get(id=2)
     k5 = k4.kino_set.all()
-    k10 = k5.count()
+    based = k5.count()
     k6 = Status.objects.get(id=3)
     k7 = k6.kino_set.all()
-    k8 = k7.count()
-    k1 = grnew.name
-    data = {'podpiska':k1,'k2':k3,'k3':k5,'k4':k7,'k5':k8,'k6':k9,'k7':k10}
+    sup = k7.count()
+    data = {'podpiska':k1,'k2':k3,'k3':k5,'k4':k7,'k5':sup,'k6':free,'k7':based}
     return render(req,'kuppodpiska.html',data)
 
 from .form import SignUpform

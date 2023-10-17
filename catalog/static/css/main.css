@@ -77,6 +77,7 @@ h1 {
     background-color: green;
     line-height: 2em;
 }
+
 .menu a{
     text-decoration: none;
     color: darkorange;
@@ -233,6 +234,7 @@ b{
 .polz{
     background-color: rgba(138, 43, 226, 0.3);
     margin-left: 100px;
+    margin-top: -50px;
     width: 600px;
     text-align: center;
     border-radius: 50px;
@@ -263,28 +265,37 @@ h4{
     color: crimson;
 }
 .ganry {
+    display:block;
+    text-align: center;
     background-color: rgba(0, 255, 255, 0.58);
-    display: table;
+    margin-left: 200px;
+    margin-right: 200px;
+
 }
 .ganry button{
     background-color: yellow;
-    font-size: 15px;
+    font-size: 10px;
     color: darkgreen;
 }
 .ganry button:hover{
      transform: rotate(25deg);
 }
 .ganry h1{
-    text-align: center;
     color: darkred;
     background-color: rgba(0, 128, 0, 0.71);
 }
 .ganry h2{
-    color: blue;
+
+   color:indigo;
+    font-size: 17px;
+}
+.ganry img{
+
+    text-align: center;
 }
 .video-js{
     position: absolute;
     display: flex;
-    margin-top: -530px;
+    margin-top: -520px;
     margin-left: 200px;
 }

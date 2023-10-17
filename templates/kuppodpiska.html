@@ -47,22 +47,34 @@
     </div>
     </div>
     </div>
-    <div class="row bg-danger">
+    <div class="row bg-danger opacity-75">
      {% if user.groups.all.0.id == 1 %}
          <h1><i>Подписка - {{ user.groups.all.0 }}:</i></h1>
             <p>В этой подписке <i>  {{ k6 }}</i> фильмов </p>
-            <p>Название фильмов: <b>  {{ k2 }}</b></p>
+         <h4>{% for i in k2 %}</h4>
+            <p>Название фильмов: <b> {{ i.title }}</b></p>
+           {% endfor %}
      {% elif user.groups.all.0.id == 2 %}
          <h1><i>Подписка - {{ user.groups.all.0 }}:</i></h1>
             <p>В этой подписке <i>  {{ k7 }}</i> фильмов </p>
-            <p>Название фильмов: <b>  {{ k3 }}</b></p>
+          <h4>{% for i in k3 %}</h4>
+            <p>Название фильмов: <b> {{ i.title }} </b></p>
+              {% endfor %}
 
      {% elif user.groups.all.0.id == 3 %}
          <h1><i>Подписка - {{ user.groups.all.0 }}:</i></h1>
             <p>В этой подписке:  <i>   {{   k5  }}  </i>   фильмов </p>
-            <p>Название фильмов: <b>{{ k4 }}</b></p>
+
+           <h4>{% for i in k4 %}</h4>
+            <p>Название фильмов: <b>{{ i.title }}</b></p>
+          {% endfor %}
+
     </div>
      {% endif %}
-
-
+{#<div class="row bg-info">#}
+{##}
+{#    <h4>{% for i in k4 %}</h4>#}
+{#        {{ i.title }}#}
+{#        {% endfor %}#}
+{#</div>#}
 {% endblock content %}
