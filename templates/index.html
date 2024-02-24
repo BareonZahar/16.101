@@ -3,19 +3,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {%  block head %}
-    <title>Кино</title>
-        <link rel="stylesheet" href="{% static 'css/main.css' %}">
-{#           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">#}
-{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>#}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
-    {% endblock %}
+{%  block head %}
+
+    <title>Кино</title>
+
+{% endblock %}
+
 </head>
 <body id="bg" style="background-image: url('{% static "img/kino.jpg" %}');">
 
-     {% block menu %}
+{% block menu %}
 
        <div class="menu">
+           <a href="{% url 'film' %}">Поиск по фильму</a>
+           <a href="{% url 'comlist' %}">Пост</a>
+           <a href="{% url 'comdetail' %}">Коментарии</a>
            <a href="{% url 'home' %}">Главная</a>
            <a href="{% url 'ganry' %}">Жанры</a>
            <a href="{% url 'admin:index' %}">Админ</a>
@@ -24,115 +29,46 @@
            <a href="{% url 'director' %}">Режиссеры</a>
            <a href="{% url 'status' %}">Каталог-фильмов</a>
            <a href="{% url 'kuppodpiska' %}">Купить-подписку</a>
-           {% if not user.username %}
-            <a href="{% url 'login' %}">Войти</a>
-           {% else %}
-            <a href="{% url 'logout' %}">Выйти</a>
-            {% endif %}
+
+               {% if not user.username %}
+                    <a href="{% url 'login' %}">Войти</a>
+               {% else %}
+                    <a href="{% url 'logout' %}">Выйти</a>
+               {% endif %}
        </div>
-{# <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-primary" id="navbarDog">#}
-{# <div class="container">#}
-{#     <a href="" class="navbar-brand">#}
-{#          <img src="/catalog/static/img/edg.jpg" alt="" style="width:30px">#}
-{#     </a>#}
-{#  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">#}
-{#      <span class="navbar-toggler-icon"></span>#}
-{#    </button>#}
-{#     <div class="collapse navbar-collapse" id="collapsibleNavbar">#}
-{##}
-{#      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">#}
-{#        <li class="nav-item">#}
-{#          <a class="nav-link" href="{% url 'home' %}">Главная</a>#}
-{#        </li>#}
-{#        <li class="nav-item">#}
-{#           <a class="nav-link" href="{% url 'ganry' %}">Жанры</a>#}
-{#        </li>#}
-{#          <li class="nav-item">#}
-{#          <a class="nav-link" href="{% url 'admin:index' %}">Админ</a>#}
-{#        </li>#}
-{#           <li class="nav-item">#}
-{#          <a class="nav-link" href="{% url 'allkino' %}">Фильмы</a>#}
-{#        </li>#}
-{#           <li class="nav-item">#}
-{#          <a class="nav-link" href="{% url 'actor' %}">Актеры</a>#}
-{#        </li>#}
-{#           <li class="nav-item">#}
-{#          <a class="nav-link" href="{% url 'director' %}">Режиссеры</a>#}
-{#        </li>#}
-{##}
-{#           <li class="nav-item">#}
-{#          <a class="nav-link" href="{% url 'status' %}">Каталог-фильмов</a>#}
-{#        </li>#}
-{#           <li class="nav-item">#}
-{#          <a class="nav-link" href="{% url 'kuppodpiska' %}">Купить-подписку</a>#}
-{#        </li>#}
-{#            {% if not user.username %}#}
-{#           <li class="nav-item">#}
-{#           <a class="nav-link" href="{% url 'login' %}">Войти</a>#}
-{#        </li>#}
-{#           {% else %}#}
-{#           <li class="nav-item">#}
-{#           <a class="nav-link" href="{% url 'logout' %}">Выйти</a>#}
-{#        </li>#}
-{#           {% endif %}#}
-{#      </ul>#}
-{#     </div>#}
-{#         </div>#}
-{#</nav>#}
 
-{#  <div class="container-fluid ">#}
-{#    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">#}
-{#      <div class="navbar-nav">#}
-{#        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>#}
-{#        <a class="nav-link" href="{% url 'ganry' %}">Жанры</a>#}
-{#        <a class="nav-link" href="{% url 'admin:index' %}">Админ</a>#}
-{#        <a class="nav-link" href="{% url 'allkino' %}">Фильмы</a>#}
-{#        <a class="nav-link" href="{% url 'actor' %}">Актеры</a>#}
-{#        <a class="nav-link" href="{% url 'director' %}">Режиссеры</a>#}
-{#        <a class="nav-link" href="{% url 'status' %}">Каталог-фильмов</a>#}
-{#        <a class="nav-link" href="{% url 'kuppodpiska' %}">Купить-подписку</a>#}
-{#          {% if not user.username %}#}
-{#        <a class="nav-link" href="{% url 'login' %}">Войти</a>#}
-{#           {% else %}#}
-{#        <a class="nav-link" href="{% url 'logout' %}">Выйти</a>#}
-{#          {% endif %}#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
+{% endblock menu %}
 
-
-
-     {% endblock menu %}
-     {% block  sentr %}
+ {% block  sentr %}
          <div class="fotoGlavn">
 {#             <img src="{% static 'img/koral.jpg' %}" alt="" width="1400" height="300">#}
          </div>
-     {% endblock sentr %}
-     {% block content %}
+ {% endblock sentr %}
+
+{% block content %}
 
          <div class="content">
-         <h1 class="neonText">Привет {{ username }} !</h1>
-         <h2 class="neonText">Ты можешь авторизироваться,</h2>
-         <h2 class="neonText">Что позволит тебе</h2>
-         <h2 class="neonText">Пользоваться всеми услугпми сайта</h2>
-             <h1 class="neonText">На сайте:</h1>
-             <h2 class="neonText"><b>{{ k1 }}</b> фильмов</h2>
-         <h2>На сайте {{ k2 }} актеров</h2>
+             <h1 class="neonText">Привет {{ username }} !</h1>
+                 <h2 class="neonText">Ты можешь авторизироваться,</h2>
+                     <h2 class="neonText">Что позволит тебе</h2>
+                         <h2 class="neonText">Пользоваться всеми услугпми сайта</h2>
+                         <h1 class="neonText">На сайте:</h1>
+                     <h2 class="neonText"><b>{{ k1 }}</b> фильмов</h2>
+                 <h2>На сайте {{ k2 }} актеров</h2>
              <h2 class="neonText">Из них:  <b>{{ k3 }}</b> фильмов <i>бесплатно</i></h2>
          </div>
 
          <div class="polz">
-         <h1 class="neonText">Гость сайта может:</h1>
-         <h2 class="neonText">пользоваться всеми контентами сайта</h2>
-         <h2 class="neonText">а также смотреть фильмы в бессплатном разделе</h2>
-         <h2  class="neonText">Желаем хорошего просмотра. </h2>
+             <h1 class="neonText">Гость сайта может:</h1>
+                 <h2 class="neonText">пользоваться всеми контентами сайта</h2>
+                 <h2 class="neonText">а также смотреть фильмы в бессплатном разделе</h2>
+             <h2  class="neonText">Желаем хорошего просмотра. </h2>
          </div>
          <div class="video-js">
-             <video width="400" height="280" autoplay loop controls="controls" muted poster="{% static "img/kon.jpg" %} ">
-
-             </video>
+             <video width="400" height="280" autoplay loop controls="controls" muted poster="{% static "img/kon.jpg" %} "></video>
          </div>
 
-     {% endblock content %}
+{% endblock content %}
+
 </body>
 </html>

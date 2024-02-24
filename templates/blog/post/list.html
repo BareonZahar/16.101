@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% block title %}Комментарии{% endblock %}
+{% block content %}
+    <h1>Комментарии к фильмам:</h1>
+
+    {% for most in posts %}
+        <h2>
+            <a href="{{ post.get_absolute_url }}">{{ most.post }}</a>
+        </h2>
+        <p class="date">
+            Опубликовано {{ most.publish  }}  Автор: --{{ most.name  }}---    Имя пользователя: --{{  user }}
+        </p>
+{#        <div>#}
+{#         <h2>{{ most.body }}</h2>#}
+{#        </div>#}
+        {{ most.body|truncatewords:30|linebreaks }}
+    {% endfor %}
+    {{ formy }}
+     {% include "pagination.html" with page=posts %}
+    <a href="{% url 'comdetail' %}">commenty</a>
+{% endblock %}

@@ -1,28 +1,20 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
+
      <div class="ganry">
-{#             {% for i in ganry %}#}
               <h1>Фильмы по жанру</h1>
                   {% for i in ganry %}
                      <h2>{{ i.name }}</h2>
                           <a href="{% url 'pro_ganry' i.id%}">
                              <button>Смотреть</button>
                          </a>
-{#                        <div class="card1">#}
-{#                     {% for kino in i.kino_set.all %}#}
-{#                        <div >#}
-{#                             <h4 class="card2">{{ kino }}</h4>#}
-{#                        </div>#}
-{#                     {% endfor %}#}
-{#                      </div>#}
                   {% endfor %}
 
-     {% for one in k2 %}
-        <h1 style="color: yellow">{{ one.title }}</h1>
+             {% for one in k2 %}
+                <h1 style="color: yellow">{{ one.title }}</h1>
+                 <img class="img1" src="{% static one.image %}" alt="" width="350">
+             {% endfor %}
+     </div>
 
-         <img class="img1" src="{% static one.image %}" alt="" width="350">
-
-    {% endfor %}
-      </div>
 {% endblock %}

@@ -1,42 +1,39 @@
 {% extends 'index.html' %}
 {% load static %}
- {%  block head %}
+
+{%  block head %}
     <title>Просмотр</title>
-        <link rel="stylesheet" href="{% static 'css/main.css' %}">
-     <link rel="stylesheet" href="{% static 'css/prosmotr.css' %}">
-{#     <link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />#}
-{#     <link href="https://unpkg.com/@videojs/themes@1/dist/forest/index.css" rel="stylesheet">#}
-    {% endblock %}
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/prosmotr.css' %}">
+
+{% endblock %}
+
 {% block content %}
-{#     {% for one in podpiska %}#}
     <h3>Фильм --<b>{{ kino }}</b></h3>
-{#    {% for kino in one.kino_set.all %}#}
-     <h2>Приятного просмотра</h2>
-    <div class="screen">
-     <link rel="stylesheet" href="{% static 'css/prosmotr.css' %}">
-      {% if prava %}
-          <video width="500" height="280" controls autoplay muted poster="{% static "img/ridic1.jpg" %}"
-                 src="{% static 'video/BB_3cc8d185-2fba-45b3-ae07-85bbcb7f10c6_FPpreview.mp4' %}">
-{#          <source src="{% static 'video/BB_09568e6e-4418-4f53-b43a-53ef62bb4134_FPpreview.mp4' %}">#}
-          </video>
-{#           <h4>Приятного просмотра</h4>#}
-    {% else %}
-          <h4>Купите подписку</h4>
-      {% if not prava%}
-             {% if user.groups.all.0.id == 1%}
-           <h4><a href="{% url 'kuppodpiska' %}">Купить базовую</a></h4>
-           <h4><a href="{% url 'kuppodpiska' %}">Купить супер</a></h4>
-             {% elif  user.groups.all.0.id == 2 %}
-           <h4><a href="{% url 'kuppodpiska' %}">Купить супер</a></h4>
-        {% endif %}
-{#    {% else %}#}
-{#            <h4 class="pri">Приятного просмотра</h4>#}
-    {% endif %}
-    {% endif %}
-    </div>
-{#    {% endfor %}#}
-    <h3>ваша подписка --<b>{{ status }}</b></h3>
-    <h3>для фильма --<b>{{ statuskino }}</b></h3>
+       <h2>Приятного просмотра</h2>
+            <div class="screen">
+                {% if prava %}
+                      <video width="500" height="280" controls autoplay muted poster="{% static "img/ridic1.jpg" %}"
+                             src="{% static 'video/BB_3cc8d185-2fba-45b3-ae07-85bbcb7f10c6_FPpreview.mp4' %}">
+            {#          <source src="{% static 'video/BB_09568e6e-4418-4f53-b43a-53ef62bb4134_FPpreview.mp4' %}">#}
+                      </video>
+                {% else %}
+                      <h4>Купите подписку</h4>
+                {% endif %}
+
+                {% if not prava%}
+                     {% if user.groups.all.0.id == 1%}
+                           <h4><a href="{% url 'kuppodpiska' %}">Купить базовую</a></h4>
+                           <h4><a href="{% url 'kuppodpiska' %}">Купить супер</a></h4>
+                     {% elif  user.groups.all.0.id == 2 %}
+                            <h4><a href="{% url 'kuppodpiska' %}">Купить супер</a></h4>
+                     {% endif %}
+                {% endif %}
+            </div>
+    <h3> ваша подписка -- <b>{{ status }}</b></h3>
+    <h3> для фильма -- <b>{{ statuskino }}</b></h3>
+
 {#    {% if not prava %}#}
 {#        {% if user.username%}#}
 {#           <h4><a href="{% url 'buystatus' type=2 %}">Купить базовую</a></h4>#}

@@ -9,6 +9,7 @@ admin.site.register(AgeRate)
 # admin.site.register(Status)
 # admin.site.register(Kino)
 admin.site.register(Country)
+# admin.site.register(Comment)
 
 
 class Actoradmin(admin.ModelAdmin):
@@ -37,3 +38,22 @@ class Stinline(admin.TabularInline):
 class Statusadmin(admin.ModelAdmin):
     inlines = [Stinline]
 admin.site.register(Status, Statusadmin)
+
+
+
+# class CommentAdmin(admin.ModelAdmin):
+#     list_display = ('name', 'email', 'post', 'publish', 'active')
+#     list_filter = ('active', 'publish', 'name')
+#     search_fields = ('name', 'email', 'body')
+#     date_hierarchy = 'publish'
+# admin.site.register(Comment, CommentAdmin)
+
+# @admin.register(Comment)
+# class CommentAdmin(admin.ModelAdmin):
+#     list_display = ('name', 'body', 'post', 'created_on', 'active')
+#     list_filter = ('active', 'created_on')
+#     search_fields = ('name', 'email', 'body')
+#     actions = ['approve_comments']
+#
+#     def approve_comments(self, request, queryset):
+#         queryset.update(active=True)

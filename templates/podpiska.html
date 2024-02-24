@@ -1,59 +1,52 @@
 {% extends 'index.html' %}
- {%  block head %}
-     {% load static %}
+{% load static %}
+{%  block head %}
+
     <title>Все фильмы</title>
-        <link rel="stylesheet" href="{% static 'css/main.css' %}">
-        <link rel="stylesheet" href="{% static 'css/podpiska.css' %}">
-{#     <link rel="stylesheet" href=" {% include "path/to/custom_styles_1.css" %}">#}
-    {% endblock %}
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/podpiska.css' %}">
+
+ {% endblock %}
+
 {% block content %}
+
     <h1 class="podp">Фильмы доступные при подписке на:</h1>
-    {% for one in podpiska %}
-       <h3 class="main"> {{ one.name }} </h3>
-         <div class="cont" >
-           {% for kino in one.kino_set.all %}
-{#               <img src="{% static kino.image %}" alt="">#}
-                <div class="card" style="height: auto">
-                    <img src="{% static kino.image %}" alt="">
-                    <h4><i class="vs">{{ kino.title }}</i></h4>
-                    <h6><i class="vs1">{{ kino.genre }}</i></h6>
-{#                    {% if not user.username %}#}
-{#                    <a href="{% url 'prosmotr' kino.id one.id 0 %}">#}
-{#                        <button>Смотреть</button>#}
-{#                    </a>#}
-{#                    {% else %}#}
-{#                    <a href="{% url 'prosmotr' kino.id one.id user.id%}">#}
-{#                        <button class="but">Смотреть</button>#}
-{#                    </a>#}
-{##}
-{#                    {% endif %}#}
-                 {% if not prava%}
-                     {% if not user.username %}
-                            <a href="{% url 'prosmotr' kino.id one.id 0 %}">
-                                <button>Смотреть</button>
-                            </a>
-                         {% else %}
-                            <a href="{% url 'prosmotr' kino.id one.id user.id%}">
-                                <button class="but">Смотреть</button>
-                            </a>
-                          {% endif %}
-                 {% else %}
-                         {% if user.groups.all.0.id == 1%}
-                       <a href="{% url 'kuppodpiska' %}"><button>Смотреть</button></a>
-                    {% elif  user.groups.all.0.id == 2 %}
-                        <a href="{% url 'kuppodpiska' %}"><button>Смотреть</button></a>
-                    {% endif %}
+        {% for one in podpiska %}
+           <h3 class="main"> {{ one.name }} </h3>
+               <div class="cont" >
+                   {% for kino in one.kino_set.all %}
+                       <div class="card" style="height: auto">
+                            <img src="{% static kino.image %}" alt="">
+                                <h4><i class="vs">{{ kino.title }}</i></h4>
+                                    <h6><i class="vs1">{{ kino.genre }}</i></h6>
 
+                                 {% if not prava%}
 
-                 {% endif %}
-                </div>
-            {% endfor %}
-        </div>
-    {% endfor %}
+                                        {% if not user.username %}
+                                            <a href="{% url 'prosmotr' kino.id one.id 0 %}">
+                                                <button>Смотреть</button>
+                                            </a>
+                                        {% else %}
+                                            <a href="{% url 'prosmotr' kino.id one.id user.id%}">
+                                                <button class="but">Смотреть</button>
+                                            </a>
+                                        {% endif %}
+
+                                 {% else %}
+
+                                        {% if user.groups.all.0.id == 1%}
+                                           <a href="{% url 'kuppodpiska' %}"><button>Смотреть</button></a>
+                                        {% elif  user.groups.all.0.id == 2 %}
+                                            <a href="{% url 'kuppodpiska' %}"><button>Смотреть</button></a>
+                                        {% endif %}
+
+                                 {% endif %}
+
+                       </div>
+                   {% endfor %}
+               </div>
+        {% endfor %}
+
 {% endblock %}
 
-
-{# style="background: url('{% static kino.image %}');#}
-{#                        background-repeat: no-repeat;#}
-{#                        background-size: 100%;#}
-{#                        background-position: center;"#}

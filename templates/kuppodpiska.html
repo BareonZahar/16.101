@@ -9,72 +9,66 @@
 {% block content %}
 
     <div class="container-fluid mt-3 ">
-{# user    #}
         <h1 class="text-center">Привет {{ user.username.title }}</h1>
-        <div class="row">
-            <div class="col p-3 bg-primary text-white opacity-75">
-                <h1></h1>
-        <h4> Имя:	{{ user.first_name }}</h4>
-        <h4>Фамилия:	{{ user.last_name }}</h4>
-        <h4>Email:	{{ user.email }}</h4>
-        <h4>Подписка:	<i>{{ user.groups.all.0 }}</i></h4>
+            <div class="row">
+      {#    ---------------- podpicka -------------#}
+                <div class="col p-3 bg-primary text-white opacity-75">
+                    <h1></h1>
+                        <h4> Имя:	{{ user.first_name }}</h4>
+                            <h4>Фамилия:	{{ user.last_name }}</h4>
+                        <h4>Email:	{{ user.email }}</h4>
+                    <h4>Подписка:	<i>{{ user.groups.all.0 }}</i></h4>
+                </div>
+        {#    ------------- kupitpodpis ---------------#}
+                <div class="col p-3 bg-dark text-white opacity-75" >
+                    <h3>Купить подписку:</h3>
+                         <div class="nav navbar-nav">
+                           {% if user.groups.all.0.id == 1%}
+                               <h4><a class="nav-link" href="{% url 'buystatus' type=3%}">супер</a></h4>
+                               <h4><a class="nav-link" href="{% url 'buystatus' type=2%}">базовую</a></h4>
+                           {% elif  user.groups.all.0.id == 2 %}
+                               <h4><a class="nav-link" href="{% url 'buystatus' type=3%}">супер</a></h4>
+                            {% endif %}
+                         </div>
+                </div>
+        {#  ----------------- kupitpodpis ----------------------------- #}
+                <div class="col p-3 bg-primary text-white opacity-75">
+                    <h3>Отказаться от подписки:</h3>
+                        <div class="nav navbar-nav">
+                            {% if user.groups.all.0.id == 3 %}
+                                 <h4><a class="nav-link" href="{% url 'otsuper' type=1%}">базовой</a></h4>
+                                 <h4><a class="nav-link" href="{% url 'otsuper' type=2%}">супер</a></h4>
+                            {% elif user.groups.all.0.id == 2 %}
+                                 <h4><a class="nav-link" href="{% url 'otsuper' type=1%}">базовой</a></h4>
+                            {% endif %}
+                        </div>
+                </div>
+            </div>
     </div>
-    <div class="col p-3 bg-dark text-white opacity-75" >
-{# kupitpodpis    #}
-        <h3>Купить подписку:</h3>
-     <div class="nav navbar-nav">
-       {% if user.groups.all.0.id == 1%}
-           <h4><a class="nav-link" href="{% url 'buystatus' type=3%}">супер</a></h4>
-           <h4><a class="nav-link" href="{% url 'buystatus' type=2%}">базовую</a></h4>
-       {% elif  user.groups.all.0.id == 2 %}
-           <h4><a class="nav-link" href="{% url 'buystatus' type=3%}">супер</a></h4>
-{#        {% else %}#}
-{#            <h4>Приятного просмотра</h4>#}
-        {% endif %}
-     </div>
-    </div>
-    <div class="col p-3 bg-primary text-white opacity-75">
-{# otkazpodris   #}
-    <h3>Отказаться от подписки:</h3>
-    <div class="nav navbar-nav">
-        {% if user.groups.all.0.id == 3 %}
-            <h4><a class="nav-link" href="{% url 'otsuper' type=1%}">базовой</a></h4>
-             <h4><a class="nav-link" href="{% url 'otsuper' type=2%}">супер</a></h4>
-        {% elif user.groups.all.0.id == 2 %}
-    <h4><a class="nav-link" href="{% url 'otsuper' type=1%}">базовой</a></h4>
-</div>
-        {% endif %}
-    </div>
-    </div>
-    </div>
+
     <div class="row bg-danger opacity-75">
-     {% if user.groups.all.0.id == 1 %}
-         <h1><i>Подписка - {{ user.groups.all.0 }}:</i></h1>
-            <p>В этой подписке <i>  {{ k6 }}</i> фильмов </p>
-         <h4>{% for i in k2 %}</h4>
-            <p>Название фильмов: <b> {{ i.title }}</b></p>
-           {% endfor %}
-     {% elif user.groups.all.0.id == 2 %}
-         <h1><i>Подписка - {{ user.groups.all.0 }}:</i></h1>
-            <p>В этой подписке <i>  {{ k7 }}</i> фильмов </p>
-          <h4>{% for i in k3 %}</h4>
-            <p>Название фильмов: <b> {{ i.title }} </b></p>
-              {% endfor %}
+         {% if user.groups.all.0.id == 1 %}
+             <h1><i>Подписка - {{ user.groups.all.0 }}:</i></h1>
+                <p>В этой подписке <i>  {{ k6 }}</i> фильмов </p>
+             <h4> {% for i in k2 %}</h4>
+                        <p>Название фильмов: <b> {{ i.title }}</b></p>
+                  {% endfor %}
+         {% elif user.groups.all.0.id == 2 %}
+             <h1><i>Подписка - {{ user.groups.all.0 }}:</i></h1>
+                <p>В этой подписке <i>  {{ k7 }}</i> фильмов </p>
+              <h4> {% for i in k3 %}</h4>
+                        <p>Название фильмов: <b> {{ i.title }} </b></p>
+                   {% endfor %}
 
-     {% elif user.groups.all.0.id == 3 %}
-         <h1><i>Подписка - {{ user.groups.all.0 }}:</i></h1>
-            <p>В этой подписке:  <i>   {{   k5  }}  </i>   фильмов </p>
+         {% elif user.groups.all.0.id == 3 %}
+             <h1><i>Подписка - {{ user.groups.all.0 }}:</i></h1>
+                <p>В этой подписке:  <i>   {{   k5  }}  </i>   фильмов </p>
 
-           <h4>{% for i in k4 %}</h4>
-            <p>Название фильмов: <b>{{ i.title }}</b></p>
-          {% endfor %}
+               <h4> {% for i in k4 %}</h4>
+                        <p>Название фильмов: <b>{{ i.title }}</b></p>
+                    {% endfor %}
 
+         {% endif %}
     </div>
-     {% endif %}
-{#<div class="row bg-info">#}
-{##}
-{#    <h4>{% for i in k4 %}</h4>#}
-{#        {{ i.title }}#}
-{#        {% endfor %}#}
-{#</div>#}
+
 {% endblock content %}

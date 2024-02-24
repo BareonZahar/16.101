@@ -5,25 +5,35 @@
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
 {% endblock %}
 {% block content %}
-         <div class="pro_actor">
-            <h2 class="pro">Про актера</h2>
-             <h2>Имя актера: {{ actor.fname }}</h2>
-             <h2>Фамилия актера: {{ actor.lname }}</h2>
-             <h2>Год рождения: {{ actor.born }}</h2>
-             <h2>Страна: {{ actor.country }}</h2>
 
-         {% for kino in actor.kino_set.all %}
-    {#          <link rel="stylesheet" href="{% static 'css/main.css' %}">#}
-
-             <p> название фильма: {{ kino.title }}</p>
-             <p> жанр: {{ kino.genre }}</p>
-             <p> страна фильма: {{ kino.country }}</p>
-             <p> в каком году снимали: {{ kino.year }}</p>
-             <p> рейтинг фильма: {{ kino.rating }}</p>
-
-{#         <div class="foto">#}
-             <h2>Фильм в котором снимался:  </h2>
-             <img src="{% static kino.image %}" alt="" width="200">
+         <div class="pro"><b>Про актера</b>
+             <h2>Имя актера: <i>{{ actor.fname }}</i></h2>
+             <h2>Фамилия актера: <i>{{ actor.lname }}</i></h2>
+             <h2>Год рождения: <i>{{ actor.born }}</i></h2>
+             <h2>Страна: <i>{{ actor.country }}</i></h2>
          </div>
-     {% endfor %}
+
+           <div class="pro_actor">
+               <br>
+                 <div class="pro_film">
+                     <br>
+                     {% for kino in actor.kino_set.all %}
+                        <div class="nazvan">
+                             <p> название фильма: <b> {{ kino.title }}</b></p>
+                             <p> жанр: <b> {{ kino.genre }}</b></p>
+                             <p> страна фильма: <b> {{ kino.country }}</b></p>
+                             <p> в каком году снимали: <b> {{ kino.year }} год</b></p>
+                             <p> рейтинг фильма: <b> {{ kino.rating }}</b></p>
+                        </div>
+                        <div class="photo">
+                             <h2>Фильм в котором снимался:  </h2>
+                             <img src="{% static kino.image %}" alt="" width="250">
+                             <br>
+                        </div>
+                         <br>
+                          <hr style="height: 10px;background: yellow;border: none">
+                     {% endfor %}
+                     <br>
+                 </div>
+           </div>
 {% endblock %}

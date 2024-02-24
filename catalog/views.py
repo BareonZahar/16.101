@@ -1,7 +1,20 @@
 from django.shortcuts import render,redirect
+from django.template.defaultfilters import title
+
 from .models import *
 from django.contrib.auth.models import User,Group
 # Create your views here.
+# def comment(req):
+#     return render(req,'registration/navbar.html')
+from catalog import views
+
+# from django.conf import settings
+# from django.core.mail import send_mail
+#
+# # headers = {'To': '{} <{}>'.format(user.get_full_name(), 'zatst2000@yandex.ru')}
+# # headers = headers
+# send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['zatst2000@yandex.ru'])
+
 def index(req):
     numkino = Kino.objects.all().count()
     numactor = Actor.objects.all().count()
@@ -19,7 +32,7 @@ def index(req):
     # user.first_name = 'Vlad'  #  ------------Програмно регистрировали пользователя -------------
     # user.last_name = 'Petrov'
     # user.save()
-    return render(req,'index.html' , context=data)
+    return render(req,'index.html', context=data)
 
 
 def ganry(req):
@@ -34,6 +47,19 @@ def pro_ganry(req,id):
     data = {'k2':k2}
     return render(req, 'new.html', data)
 
+def film(req):
+    p1 = Kino.objects.all()
+    # print(p1)
+    # p2 = p1.get(id=1)
+    # print(p2)
+    # p3 = p2.title
+    # print(p3)
+    data = {'film':p1}
+    return render(req,'film.html',data)
+def film_film(req):
+    p1 = Kino.objects.all()
+    data ={'p1':p1}
+    return render(req,'film_film.html',data)
 
 
 def status(req):
@@ -83,51 +109,8 @@ def kuppodpiska(req):
     return render(req, 'kuppodpiska.html',data)
 
 
-    # if id3 != 0:
-    #     status = User.objects.get(id=id3)  # нашли юзера
-    #     print(status)
-    #     status = status.groups.all()  # нашли его подписки
-    #     print(status)
-    #     status = status[0].id  # нашли айди его подписки(она одна)
-    #     print(status)
-    # k3 = Group.objects.get(status)
-    # k2 = Status.objects.get(id=id2).name
-    # k4 = Kino.objects.get(id2).title
-    # data = {'k4':k4,'k3':k3,'k2':k2}
 
-    # print(id1, id2, id3)
-    # if id3 != 0:
-    #     status = User.objects.get(id=id3)  #  нашли юзера
-    #     print(status)
-    #     status = status.groups.all()  # нашли его подписки
-    #     print(status)
-    #     status = status[0].id  #  нашли айди его подписки(она одна)
-    #     print(status)
-    # else:
-    #     if id3 == 0:
-    #         status = 1
-    # if status >= id2:
-    #     print('ok')
-    #     permission = True
-    # else:
-    #     print('nelzy')
-    #     permission = False
-    #
-    # if status == id3:
-    #     k4 = Status.objects.get(id=id3).name
-    #     data = {'k4':k4}
-    #     print(k4)
-    # elif status == id2:
-    #     k4 = Status.objects.get(id=id2).name
-    #     data = {'k4': k4}
-    #     print(k4)
-    # else:
-    #     k4 = Status.objects.get(id=id1).name
-    #     data = {'k4': k4}
-    #     print(k4)
-    # k1 = Kino.objects.get(id=id1).title
-    # k2 = Group.objects.get(id=status).name
-    # k3 = Status.objects.get(id=id2).name
+
 
 
 def otsuper(req,type):
@@ -225,25 +208,146 @@ class ActorDetail(generic.DetailView):
 
 class Directorlist(generic.ListView):
     model = Director
-    paginate_by = 7
+    paginate_by = 5
 
 class DirectorDetail(generic.DetailView):
     model = Director
 
-from django.http import HttpResponse
-# def info(req,id):
-#     film = Kino.objects.get(id=id)
-#     return HttpResponse(film.title)
-# def proactor(req):
-#     name = Actor.objects.all()
-#     # gim = ''
-#     # for i in name:
-#     #     gim = i.fname +'  ' +i.lname
-#     #     # gam
-#     #     print(gim)
-#     data = {'k1':name}
-#     return render(req,'new.html',context=data)
+
+# class Commentlist(generic.ListView):
+#     model = Comment
 #
+#
+# class CommentDetail(generic.DetailView):
+#     model = Comment
+
+
+from django.shortcuts import render, get_object_or_404
+
+
+# def comment_list(request):
+#     posts = Comment.objects.all()
+#     formy = CommentForm()
+#     data = {'posts': posts,'formy':formy}
+#     return render(request, 'blog/post/list.html', data)
+
+
+
+# def comment_detail(request):
+#     if request.method == 'POST':
+#         form = CommentForm(request.POST)
+#         if form.is_valid():     Новая итерпритация вывода
+#             comm = form.save(commit=False)
+#             comm.name = form.cleaned_data.get('name')
+#             comm.body = form.cleaned_data.get('body')
+#             comm.save()
+#         else:
+#             form = CommentForm
+#         data = {'form':form}
+#         return render(request,  'blog/post/detail.html', data)
+
+
+
+
+from django.shortcuts import get_object_or_404
+# def post_share(request, post_id):
+#     # Retrieve post by id
+#     post = get_object_or_404(Kino, id=post_id, status='published')
+#     if request.method == 'POST':
+#         # Form was submitted
+#         form = EmailPostForm(request.POST)
+#         if form.is_valid():
+#             # Form fields passed validation
+#             cd = form.cleaned_data
+#             # ... send email
+#     else:
+#         form = EmailPostForm()
+#     return render(request, 'blog/post/share.html', {'post': post,'form': form})
+
+
+from .models import *
+# from .form import CommentForm
+# def comment_detail(request, year, month, day):
+#     post = get_object_or_404(Kino,
+#                                    status='published',
+#                                    publish__year=year,
+#                                    publish__month=month,
+#                                    publish__day=day)
+#     # List of active comments for this post
+#     comments = post.comments.filter(active=True)
+#
+#     if request.method == 'POST':
+#         # A comment was posted
+#         comment_form = CommentForm(data=request.POST)
+#         if comment_form.is_valid():
+#             # Create Comment object but don't save to database yet
+#             new_comment = comment_form.save(commit=False)
+#             # Assign the current post to the comment
+#             new_comment.post = post
+#             # Save the comment to the database
+#             new_comment.save()
+#     else:
+#         comment_form = CommentForm()
+#     data = {'post': post, 'comments': comments,'comment_form': comment_form}
+#     return render(request, 'blog/post/detail.html', data)
+
+
+# def comment_detail(request, year, month, day):
+#     post = get_object_or_404(Comment, status == 'published', publish_year=year, publish_month=month, publish_day=day)
+#     data = {'post': post}
+#     return render(request, 'blog/post/detail.html', data)
+
+
+# def comment_detail(request, slug, year, month, day):
+#     post = get_object_or_404(Comment, slug=slug, status='published', publish_year=year, publish_month=month,
+#                              publish_day=day)
+#     data = {'post': post}
+#     return render(request, 'blog/post/detail.html', data)
+
+
+
+
+# def post_share(request, post_id):
+#     # Retrieve post by id
+#     post = get_object_or_404(Kino, id=post_id, status='published')
+#     cd = ''
+#     if request.method == 'POST':
+#         # Form was submitted
+#         form = EmailPostForm(request.POST)
+#         if form.is_valid():
+#             # Form fields passed validation
+#             cd = form.cleaned_data
+#             # ... send email
+#     else:
+#         form = EmailPostForm()
+#     data = {'post': post, 'form': form, 'cd': cd}
+#     return render(request, 'blog/post/share.html', data)
+
+
+from .models import Kino
+# from .form import CommentForm
+from django.shortcuts import render, get_object_or_404
+
+# def comment_detail(request, slug):
+#     template_name = 'post_detail.html'
+#     post = get_object_or_404(Kino, slug=slug)
+#     comments = post.comments.filter(active=True)
+#     new_comment = None    # Comment posted
+#     if request.method == 'POST':
+#         comment_form = CommentForm(data=request.POST)
+#         if comment_form.is_valid():
+#             # Create Comment object but don't save to database yet
+#             new_comment = comment_form.save(commit=False)
+#             # Assign the current post to the comment
+#             new_comment.post = post
+#             # Save the comment to the database
+#             new_comment.save()
+#     else:
+#         comment_form = CommentForm()
+#     return render(request, template_name, {'post': post,
+#                                            'comments': comments,
+#                                            'new_comment': new_comment,
+#                                            'comment_form': comment_form})
 
 
 

@@ -8,14 +8,17 @@
     <h2 class="po">Все режисеры</h2>
        <ul class="regh_ul">
            {% for direc in director_list %}
-         <li class="regh">
-             <a href="{{ direc.get_absolute_url }}"><p class="lo">{{ direc.fname }}</p></a>
+         <li class="regh"><a href="{{ direc.get_absolute_url }}">
+             <img src="{% static direc.image %}" alt="" style="border-radius: 100px">
+             <p class="lo">{{ direc.fname }}</p>
 {#         <p class="lo">{{ direc.lname}}</p>#}
-          <a href="{{ direc.get_absolute_url }}"><p>{{ direc.lname}}</p></a>
+         <p>{{ direc.lname}}</p></a>
          </li>
        {% endfor %}
        </ul>
-
+    <br>
+    <br>
+    <br>
 {%  if is_paginated %}
 
     <div class="pagination">

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+     <h2 class="glav1">Фильм: <b>{{ kino.title }}</b></h2>
+     <h2 class="glav">Режисер: {{ kino.director }}</h2>
+     <h2 class="glav">Рейтинг: {{ kino.ager }}</h2>
+     <h2 class="glav2">Уровень подписки: <i>{{ kino.status }}</i></h2>
+     <h2 class="glav">Актеры: {{ kino.display_actors }}</h2>
+     <h2 class="opis"><i>Описание:</i>  {{ kino.summary }}</h2>
+     <img src="{% static kino.image %}" alt="" width="100">
+
+</body>
+</html>
