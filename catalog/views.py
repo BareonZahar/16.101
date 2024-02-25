@@ -47,15 +47,16 @@ def pro_ganry(req,id):
     data = {'k2':k2}
     return render(req, 'new.html', data)
 
-def film(req):
-    p1 = Kino.objects.all()
-    # print(p1)
-    # p2 = p1.get(id=1)
-    # print(p2)
-    # p3 = p2.title
-    # print(p3)
-    data = {'film':p1}
-    return render(req,'film.html',data)
+# def film(req):
+#     p1 = Kino.objects.all()
+#     # print(p1)
+#     # p2 = p1.get(id=1)
+#     # print(p2)
+#     # p3 = p2.title
+#     # print(p3)
+#     data = {'film':p1}
+#     return render(req,'film.html',data)
+
 def film_film(req):
     p1 = Kino.objects.all()
     data ={'p1':p1}
@@ -91,7 +92,9 @@ def prosmotr(req,id1,id2,id3):
     k1 = Kino.objects.get(id=id1).title
     k2 = Group.objects.get(id=status).name
     k3 = Status.objects.get(id=id2).name
-    data = {'kino':k1,'status':k2,'statuskino':k3,'prava':permission}
+    kino = Kino.objects.get(id=id1)
+    link = kino.link  # Предположим, что ссылка на фильм хранится в поле link модели Kino
+    data = {'kino':k1,'status':k2,'statuskino':k3,'prava':permission, 'link': link}
     return render(req,'prosmotr.html',data)
 
 

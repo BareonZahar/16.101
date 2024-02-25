@@ -21,27 +21,27 @@
                                 <h4><i class="vs">{{ kino.title }}</i></h4>
                                     <h6><i class="vs1">{{ kino.genre }}</i></h6>
 
-                                 {% if not prava%}
+                         {% if not prava%}
 
-                                        {% if not user.username %}
-                                            <a href="{% url 'prosmotr' kino.id one.id 0 %}">
-                                                <button>Смотреть</button>
-                                            </a>
-                                        {% else %}
-                                            <a href="{% url 'prosmotr' kino.id one.id user.id%}">
-                                                <button class="but">Смотреть</button>
-                                            </a>
-                                        {% endif %}
+                                {% if not user.username %}
+                                    <a href="{% url 'prosmotr' kino.id one.id 0 %}">
+                                        <button class="but">Смотреть</button>
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'prosmotr' kino.id one.id user.id%}">
+                                        <button class="but">Смотреть</button>
+                                    </a>
+                                {% endif %}
 
-                                 {% else %}
+                         {% else %}
 
-                                        {% if user.groups.all.0.id == 1%}
-                                           <a href="{% url 'kuppodpiska' %}"><button>Смотреть</button></a>
-                                        {% elif  user.groups.all.0.id == 2 %}
-                                            <a href="{% url 'kuppodpiska' %}"><button>Смотреть</button></a>
-                                        {% endif %}
+                                {% if user.groups.all.0.id == 1%}
+                                   <a href="{% url 'kuppodpiska' %}"><button class="but">Смотреть</button></a>
+                                {% elif  user.groups.all.0.id == 2 %}
+                                    <a href="{% url 'kuppodpiska' %}"><button class="but">Смотреть</button></a>
+                                {% endif %}
 
-                                 {% endif %}
+                         {% endif %}
 
                        </div>
                    {% endfor %}

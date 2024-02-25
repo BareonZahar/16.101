@@ -119,7 +119,10 @@ p{
 
 }
 .lo{
-  font-size: 25px;
+    font-size: 25px;
+    word-break:break-all;
+    padding: 5px;
+
 }
 ul{
     text-align: center;
@@ -247,7 +250,7 @@ li a:hover{
 }
 .glav1{
     text-align: center;
-    font-size: 30px;
+    font-size: 35px;
     color: gold;
     background-color: rgba(47, 79, 79, 0.54);
 }
@@ -259,31 +262,49 @@ li a:hover{
 }
 .opis{
     margin-top: 0;
+
     text-align: center;
     justify-content:space-evenly;
     border: 2px solid blueviolet;
-    border-radius: 20px;
+    border-radius: 10px;
+    color: white;
+    font-size: 25px;
     background-color: rgba(0, 128, 0, 0.83);
+}
+.opis .krat{
+    font-size: 30px;
+    font-family: "Garamond", "Georgia", "serif";
+    font-weight: 700;
 }
 i{
     color: blue;
 }
 b{
-    color: crimson;
+    color: lime;
 }
 .regh_ul{
     background-color: rgba(139, 0, 0, 0.33);
 }
 .regh{
+
+    /*overflow: hidden;*/
+    /*overflow: auto;*/
+    width: 10%;
     background-color: rgba(255, 255, 0, 0.5);
+    border-radius: 20px;
+}
+.regh img{
+    width: 100%;
     border-radius: 20px;
 }
 .regh:hover{
     background-color: darkred;
-    transform:scale(0.9);
+    transform:scale(0.98);
 }
 .reg_der{
-    color: chartreuse;
+    color: yellow;
+    font-size: 30px;
+
 }
 .polz{
     background-color: rgba(138, 43, 226, 0.3);

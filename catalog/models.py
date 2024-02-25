@@ -24,11 +24,11 @@ class Director(models.Model):
         return f'{self.lname},{self.fname}'
 
     def get_absolute_url(self):
-        return reverse('intdir', kwargs={'id': self.id})
+        return reverse('intdir', kwargs={'pk': self.pk})
 
     class Meta:
-        verbose_name = 'Режиссер'
-        verbose_name_plural = 'Режиссеров'
+        verbose_name = 'Режиссеров'
+        verbose_name_plural = 'Режиссеры'
 
 
 class Actor(models.Model):
@@ -41,12 +41,15 @@ class Actor(models.Model):
     def __str__(self):
         return self.lname
 
+    # def get_absolute_url(self):
+    #     return reverse('infor', kwargs={'pk': self.pk})
+
     def get_absolute_url(self):
-        return reverse('infor', kwargs={'id': self.id})
+        return reverse('infor', kwargs={'pk': self.pk, 'lname': self.lname})
 
     class Meta:
-        verbose_name = 'Актер'
-        verbose_name_plural = 'Актеров'
+        verbose_name = 'Актеров'
+        verbose_name_plural = 'Актеры'
 
 
 class Status(models.Model):
@@ -68,7 +71,7 @@ class Country(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Страна'
+        verbose_name = 'Страну'
         verbose_name_plural = 'Страны'
 
 
@@ -81,21 +84,22 @@ class AgeRate(models.Model):
 
     class Meta:
         verbose_name = 'Рейтинг'
-        verbose_name_plural = 'Рейтингов'
+        verbose_name_plural = 'Рейтинги'
 
 
 class Kino(models.Model):
     title = models.CharField(max_length=30, verbose_name='Название')
     genre = models.ForeignKey(Genre, on_delete=models.SET_DEFAULT, default=1, verbose_name='Жанр')
     rating = models.FloatField(verbose_name='Оценка')
-    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
-    director = models.ForeignKey(Director, on_delete=models.SET_NULL, null=True)
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True, verbose_name='Страна')
+    director = models.ForeignKey(Director, on_delete=models.SET_NULL, null=True, verbose_name='Режисер')
     summary = models.TextField(max_length=500, verbose_name='Описание')
     year = models.IntegerField(verbose_name='Год')
-    ager = models.ForeignKey(AgeRate, on_delete=models.SET_NULL, null=True)
+    ager = models.ForeignKey(AgeRate, on_delete=models.SET_NULL, null=True, verbose_name='Рейтинг')
     actor = models.ManyToManyField(Actor, verbose_name='Актер')
-    status = models.ForeignKey(Status, on_delete=models.SET_DEFAULT, default=1)
+    status = models.ForeignKey(Status, on_delete=models.SET_DEFAULT, default=1, verbose_name='Подписка')
     image = models.CharField(max_length=100, blank=True, null=True, verbose_name='Картинка')
+    link = models.URLField(max_length=200, blank=True, null=True, verbose_name='Ссылка фильма')
 
     def __str__(self):
         return self.title
@@ -108,7 +112,7 @@ class Kino(models.Model):
     display_actors.short_description = 'Актеры'
 
     def get_absolute_url(self):
-        return reverse('info', kwargs={'id': self.id})
+        return reverse('info', kwargs={'pk': self.pk, 'title': self.title})
 
     class Meta:
         verbose_name = 'Фильм'
@@ -130,7 +134,7 @@ class Commentary(models.Model):
 
     class Meta:
         verbose_name = 'Комментарий'
-        verbose_name_plural = 'Комментариев'
+        verbose_name_plural = 'Комментарии'
         ordering = ['-time_created']
 
     def get_absolute_url(self):

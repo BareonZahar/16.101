@@ -14,13 +14,19 @@
        <h2>Приятного просмотра</h2>
             <div class="screen">
                 {% if prava %}
-                      <video width="500" height="280" controls autoplay muted poster="{% static "img/ridic1.jpg" %}"
-                             src="{% static 'video/BB_3cc8d185-2fba-45b3-ae07-85bbcb7f10c6_FPpreview.mp4' %}">
+
+                      <iframe width="800" height="250" src="{{ link }}"
+          title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+           encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe>
+{#                      <video width="500" height="280" controls autoplay muted poster="{% static "img/ridic1.jpg" %}"#}
+{#                             src="{% static 'video/BB_3cc8d185-2fba-45b3-ae07-85bbcb7f10c6_FPpreview.mp4' %}">#}
             {#          <source src="{% static 'video/BB_09568e6e-4418-4f53-b43a-53ef62bb4134_FPpreview.mp4' %}">#}
-                      </video>
+{#                      </video>#}
+
                 {% else %}
                       <h4>Купите подписку</h4>
                 {% endif %}
+
 
                 {% if not prava%}
                      {% if user.groups.all.0.id == 1%}
@@ -30,7 +36,7 @@
                             <h4><a href="{% url 'kuppodpiska' %}">Купить супер</a></h4>
                      {% endif %}
                 {% endif %}
-            </div>
+          </div>
     <h3> ваша подписка -- <b>{{ status }}</b></h3>
     <h3> для фильма -- <b>{{ statuskino }}</b></h3>
 

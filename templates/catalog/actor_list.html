@@ -8,7 +8,7 @@
     <h2 class="ok">Все актеры</h2>
        <ul>{% for actor in actor_list %}
            <div class="actor_card">
-         <li>
+         <li><img src="{% static actor.image %}" alt="" width="200">
               <a href="{{ actor.get_absolute_url }}">{{ actor.fname }} {{ actor.lname }}</a>
              <p class="st">Родился :</p>
             <p>{{ actor.born }}</p>

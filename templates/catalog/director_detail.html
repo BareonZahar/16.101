@@ -10,9 +10,14 @@
     <h2 class="glav">Фамилия режисера: <i class="reg_der">{{ director.lname }}</i></h2>
      {% for kino in director.kino_set.all %}
          <h2 class="glav2">Режисер какого фильма: <b>{{ kino.title }}</b></h2>
-         <h2 class="glav2">Какой жанр фильма: <i class="reg_der">{{ kino.genre }}</i></h2>
+         <h2 class="glav2">Какой жанр фильма: <i class="reg_de">{{ kino.genre }}</i></h2>
          <h2 class="glav2">В какой стране снят фильм: {{ kino.country }}</h2>
-         <h3 class="opis">Краткое описание фильма:   {{ kino.summary }}</h3>
-             <img class="img1" src="{% static kino.image %}" alt="" width="350">
+         <div class="opis">
+         <h3 >Краткое описание фильма </h3>
+         <p class="krat">{{ kino.summary }}</p>
+         <img class="img1" src="{% static kino.image %}" alt="" width="350">
+             <br>
+         </div>
+{#             <img class="img1" src="{% static kino.image %}" alt="" width="350">#}
      {% endfor %}
 {% endblock %}

@@ -1,9 +1,0 @@
-{% extends 'index.html' %}
-{% block content %}
-<h1>Все фильмы</h1>
-    {% for kino in film %}
-        <table>
-            <a class="film" href="{{ kino.get_absolute_url }}">{{ kino.title }}</a>
-        </table>
-    {% endfor %}
-{% endblock %}

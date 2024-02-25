@@ -1,13 +1,15 @@
 {% extends 'index.html' %}
+{% load static %}
 {% block content %}
 
     <h2 class="katalog">Каталог фильмов</h2>
-    <ul class="regh_ul">{% for kino in kino_list %}
+    <ul class="regh_ul">
+        {% for kino in kino_list %}
          <li  class="regh">
-{#         <a href="{% url 'info' id=kino.id %}">{{ kino.title }}</a>#}
-             <a href="{{ kino.get_absolute_url }}"><p class="lo"><b>{{ kino.genre }}</b></p></a>
-{#         <p>{{ kino.genre }}</p>#}
-             <a href="{{ kino.get_absolute_url }}"><p class="lo">{{ kino.title }}</p></a>
+             <a href="{{ kino.get_absolute_url }}">
+                 <img src="{% static kino.image %}" alt="" >
+                 <p class="lo"><b>{{ kino.genre }}</b></p>
+                 <p class="lo">{{ kino.title }}</p></a>
          </li>
         {% endfor %}
     </ul>

@@ -48,7 +48,20 @@ h1{
     background-color: rgba(255, 255, 0, 0.51);
 }
 button{
+    margin-bottom: 20px;
     background-color: yellow;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: blue;
+    font-family: "Arial Black";
+
+}
+button:hover{
+    background-color: forestgreen;
+    color: yellow;
+}
+
+iframe{
+    aspect-ratio: 16/9;
+    width: 100%;
 }

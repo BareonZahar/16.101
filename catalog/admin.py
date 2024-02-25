@@ -9,7 +9,7 @@ admin.site.register(AgeRate)
 # admin.site.register(Status)
 # admin.site.register(Kino)
 admin.site.register(Country)
-# admin.site.register(Comment)
+admin.site.register(Commentary)
 
 
 class Actoradmin(admin.ModelAdmin):
