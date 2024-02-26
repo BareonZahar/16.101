@@ -57,10 +57,10 @@ def pro_ganry(req,id):
 #     data = {'film':p1}
 #     return render(req,'film.html',data)
 
-def film_film(req):
-    p1 = Kino.objects.all()
-    data ={'p1':p1}
-    return render(req,'film_film.html',data)
+# def film_film(req):
+#     p1 = Kino.objects.all()
+#     data ={'p1':p1}
+#     return render(req,'film_film.html',data)
 
 
 def status(req):

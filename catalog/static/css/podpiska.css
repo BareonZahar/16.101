@@ -1,14 +1,19 @@
 .main{
     background-color: aquamarine;
     text-align: center;
-    font-size: 30px;
+    font-size: 40px;
+    margin: 0 20px;
+    border-radius: 5px;
+    padding: 10px;
+    color: darkblue;
+    font-weight: 700;
 }
 .cont{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
-{%load static%}
+
 .card{
     /*background: url('{% static "kino.image" %}');*/
     text-align: center;
@@ -22,7 +27,7 @@
 .card img{
     background-size: cover;
     width: 90%;
-    margin-top: 20px;
+    margin: 0 auto;
 }
 h1{
     text-align: center;
@@ -35,17 +40,20 @@ h1{
 .vs{
     overflow: visible;
     color:chartreuse;
-    font-size: 25px;
-    /*word-break: break-all;*/
+    font-size: 27px;
 }
 .vs1{
     overflow: visible;
     color:aqua;
-    font-size: 15px;
-    /*word-break: break-all;*/
+    font-size: 22px;
 }
 .podp{
-    background-color: rgba(255, 255, 0, 0.51);
+    padding: 10px;
+    margin: 0 auto;
+    width: 60%;
+    background-color: coral;
+    border-radius: 10px;
+    color: saddlebrown;
 }
 button{
     margin-bottom: 20px;
@@ -54,13 +62,13 @@ button{
     font-weight: 700;
     color: blue;
     font-family: "Arial Black";
-
 }
 button:hover{
     background-color: forestgreen;
     color: yellow;
 }
 
+/*css Для видео */
 iframe{
     aspect-ratio: 16/9;
     width: 100%;

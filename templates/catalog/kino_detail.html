@@ -1,19 +1,24 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-
-    <h2 class="glav1">Фильм</h2>
-      <h2 class="glav1"><b>{{ kino.title }}</b></h2>
-         <h2 class="glav">Режисер: {{ kino.director }}</h2>
-             <h2 class="glav">Рейтинг: {{ kino.ager }}</h2>
-                <h2 class="glav2">Уровень подписки: <i>{{ kino.status }}</i></h2>
-                    <h2 class="glav">Актеры: {{ kino.display_actors }}</h2>
+    <br>
+    <div style="padding: 0 20px">
+        <h2 class="glav1">Фильм</h2>
+           <h2 class="glav1"><b>{{ kino.title }}</b></h2>
+              <h2 class="glav">Режисер: <i>{{ kino.director }}</i></h2>
+                  <h2 class="glav">Рейтинг: <b>{{ kino.ager }}</b></h2>
+                    <h2 class="glav2">Уровень подписки: <i>{{ kino.status }}</i></h2>
+                        <h2 class="glav">Актеры: <b>{{ kino.display_actors }}</b></h2>
+        </div>
+    <br>
             <div class="opis">
+                <br>
                 <h2><i>Описание:</i></h2>
                     <p class="krat">{{ kino.summary }}</p>
                         <img src="{% static kino.image %}" alt="" width="350">
                     <br>
                 <br>
             </div>
-
+    <br>
+    <br>
 {% endblock %}

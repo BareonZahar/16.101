@@ -2,7 +2,6 @@ body{
     position: relative;
 }
 .user{
-
     text-align: center;
     background-color: rgba(255, 255, 0, 0.71);
     margin-left: 400px;
@@ -18,17 +17,11 @@ body{
     background-color: rgba(124, 252, 0, 0.75);
     font-size: 20px;
     font-family: Calibri;
-    /*margin-left: 350px;*/
-    /*width: 200px;*/
-    /*margin-top: -270px;*/
 }
 .otkazpodris{
     text-align: center;
     position: absolute;
     font-family:Arial;
-    /*margin-left: 600px;*/
-    /*width: 200px;*/
-    /*margin-top: -270px;*/
     background-color: rgba(0, 255, 255, 0.71);
 }
 a{
@@ -39,16 +32,15 @@ a{
 a:hover{
     text-decoration: none;
     color: crimson;
-    box-shadow: 0 10px yellow;
 }
 i{
     font-size: 35px;
 }
 .navbar-nav a:hover{
     text-decoration: none;
-     color: crimson;
+    color: crimson;
+    font-size: 26px;
     width: 100px;
-    box-shadow: 0 10px yellow;
 }
 b{
     color: darkblue;

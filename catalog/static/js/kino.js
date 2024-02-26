@@ -62,3 +62,10 @@
         var time = date + ' ' + mouth + ' ' + year + ' ' + hour + ':' + min + ':' +sec;
         return time;
     }
+
+  // const menu = document.querySelector('.menu');
+  // const menuToggle = document.querySelector('.menu-toggle');
+  //
+  // menuToggle.addEventListener('onclick', () => {
+  //   menu.classList.toggle('open');
+  // });

@@ -1,74 +1,65 @@
-<!DOCTYPE html>
+
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-
-{%  block head %}
-
-    <title>Кино</title>
-
-{% endblock %}
-
-</head>
-<body id="bg" style="background-image: url('{% static "img/kino.jpg" %}');">
-
-{% block menu %}
-
-       <div class="menu">
-{#           <a href="{% url 'film' %}">Поиск по фильму</a>#}
-{#           <a href="#">Пост</a>#}
-{#           <a href="{% url 'comdetail' %}">Коментарии</a>#}
-           <a href="{% url 'home' %}">Главная</a>
-           <a href="{% url 'ganry' %}">Жанры</a>
-           <a href="{% url 'admin:index' %}">Админ</a>
-           <a href="{% url 'allkino' %}">Фильмы</a>
-           <a href="{% url 'actor' %}">Актеры</a>
-           <a href="{% url 'director' %}">Режиссеры</a>
-           <a href="{% url 'status' %}">Каталог-фильмов</a>
-           <a href="{% url 'kuppodpiska' %}">Купить-подписку</a>
-
-               {% if not user.username %}
-                    <a href="{% url 'login' %}">Войти</a>
-               {% else %}
-                    <a href="{% url 'logout' %}">Выйти</a>
-               {% endif %}
-       </div>
-
-{% endblock menu %}
-
- {% block  sentr %}
-         <div class="fotoGlavn">
-{#             <img src="{% static 'img/koral.jpg' %}" alt="" width="1400" height="300">#}
-         </div>
- {% endblock sentr %}
-
 {% block content %}
-
-         <div class="content">
-             <h1 class="neonText">Привет {{ username }} !</h1>
-                 <h2 class="neonText">Ты можешь авторизироваться,</h2>
-                     <h2 class="neonText">Что позволит тебе</h2>
-                         <h2 class="neonText">Пользоваться всеми услугпми сайта</h2>
-                         <h1 class="neonText">На сайте:</h1>
-                     <h2 class="neonText"><b>{{ k1 }}</b> фильмов</h2>
-                 <h2>На сайте {{ k2 }} актеров</h2>
-             <h2 class="neonText">Из них:  <b>{{ k3 }}</b> фильмов <i>бесплатно</i></h2>
+    <br>
+    {% if not request.user.is_authenticated %}
+       <div class="row" style=" background-color: rgba(139, 0, 0, 0.25); border-radius: 50px;margin: 0 20px">
+               <div class="col-sm-6" style="text-align: center;margin: auto">
+                    <div class="video-js">
+                        <video  autoplay loop controls="controls" muted poster="{% static "img/kon.jpg" %} "></video>
+                    </div>
+               </div>
+               <div class="col-sm-6"style="text-align: center">
+                   <br>
+                 <h1 class="neonText">Привет {{ username }} !</h1>
+                     <h2 class="neonText">Ты можешь авторизироваться,</h2>
+                         <h2 class="neonText">Что позволит тебе</h2>
+                             <h2 class="neonText">Пользоваться всеми услугами сайта</h2>
+                             <h1 class="neonText">На сайте:</h1>
+                         <h2 class="neonText"><b>{{ k1 }}</b> фильмов</h2>
+                   <h2 class="neonText">На сайте <b>{{ k2 }}</b> актеров</h2>
+                 <h2 class="neonText">Из них:  <b>{{ k3 }}</b> фильмов <i>бесплатно</i></h2>
+                   <br>
+               </div>
+       </div>
+    <br>
+         <div class="row" style=" background-color: rgba(139, 0, 0, 0.25); border-radius: 50px;margin: 0 20px">
+         <div class="col-sm-12" style="text-align: center;margin: auto">
+             <br>
+                 <h1 class="neonText">Гость сайта может:</h1>
+                     <h2 class="neonText">пользоваться всеми контентами сайта</h2>
+                     <h2 class="neonText">а также смотреть фильмы в бессплатном разделе</h2>
+                 <h2  class="neonText">Желаем хорошего просмотра. </h2>
+             <br>
          </div>
-
-         <div class="polz">
-             <h1 class="neonText">Гость сайта может:</h1>
-                 <h2 class="neonText">пользоваться всеми контентами сайта</h2>
-                 <h2 class="neonText">а также смотреть фильмы в бессплатном разделе</h2>
-             <h2  class="neonText">Желаем хорошего просмотра. </h2>
-         </div>
-         <div class="video-js">
-             <video width="400" height="280" autoplay loop controls="controls" muted poster="{% static "img/kon.jpg" %} "></video>
-         </div>
+    </div>
+        {% else %}
+        <div class="row" style=" background-color: rgba(139, 0, 0, 0.25); border-radius: 50px;margin: 0 20px">
+               <div class="col-sm-6" style="text-align: center;margin: auto">
+                    <div class="video-js">
+                        <video width="400" height="280" autoplay loop controls="controls" muted poster="{% static "img/kon.jpg" %} "></video>
+                    </div>
+               </div>
+               <div class="col-sm-6"style="text-align: center">
+                   <br>
+                 <h1 class="neonText">Привет {{ username }} !</h1>
+                   <h2 class="neonText">Твоя подписка <i>{{ user.groups.all.0 }}</i></h2>
+                         <h2 class="neonText">На нашем сайте тебе доступны </h2>
+                             <h2 class="neonText"> Фильмы для просмотра</h2>
+                             <h1 class="neonText">На сайте:</h1>
+                         <h2 class="neonText"><b>{{ k1 }}</b> фильмов</h2>
+                   <h2 class="neonText">На сайте <b>{{ k2 }}</b> актеров</h2>
+                  {% if user.groups.all.0.name != 'Super' %}
+                 <h2 class="neonText">Из них:  <b>{{ k3 }}</b> фильмов <i>бесплатно</i></h2>
+                   <h2 class="neonText">Плюс все фильмы  <i>{{ user.groups.all.0 }}</i> подписки</h2>
+                       {% else %}
+                       <h2 class="neonText"><i>Смотри все фильмы</i></h2>
+                       {% endif %}
+                   <br>
+               </div>
+       </div>
+    <br>
+    {% endif %}
 
 {% endblock content %}
-
-</body>
-</html>

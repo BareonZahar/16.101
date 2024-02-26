@@ -1,21 +1,6 @@
-/*body{*/
-/*    text-align: center;*/
-/*}*/
-/*h3{*/
-/*    color:lawngreen;*/
-/*    text-align: center;*/
-/*    font-size: 30px;*/
-/*}*/
-/*.screen{*/
-/*    display: flex;*/
-/*    background-color: rgba(0, 0, 0, 0.6);*/
-/*    text-align: center;*/
-/*    justify-content: space-between;*/
-/*    font-size: 20px;*/
-/*}*/
+
 body{
     text-align: center;
-
 }
 .screen{
     width: 800px;
@@ -42,7 +27,6 @@ h4 a:hover{
     background-color: deeppink;
     color: lime;
     transform: skew(25deg);
-
 }
 b{
     color: darkblue;

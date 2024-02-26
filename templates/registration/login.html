@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load static %}
  {%  block head %}
     <title>Вход</title>
@@ -21,7 +21,7 @@
           </tr>
           <tr>
               <td>
-                  <a class="zabil" href="{% url 'password_reset' %}">забыл пороль ?</a>
+                  <a class="zabil" href="{% url 'password_reset' %}">забыли пароль ?</a>
               </td>
           </tr>
       </table>

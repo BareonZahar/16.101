@@ -1,20 +1,26 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-
+    <br>
     <h2 class="katalog">Каталог фильмов</h2>
-    <ul class="regh_ul">
-        {% for kino in kino_list %}
-         <li  class="regh">
-             <a href="{{ kino.get_absolute_url }}">
-                 <img src="{% static kino.image %}" alt="" >
-                 <p class="lo"><b>{{ kino.genre }}</b></p>
-                 <p class="lo">{{ kino.title }}</p></a>
-         </li>
-        {% endfor %}
-    </ul>
+    <br>
+    <div class="regh_ul">
+        <br>
+        <br>
+        <ul>
+            {% for kino in kino_list %}
+             <li  class="regh">
+                 <a href="{{ kino.get_absolute_url }}">
+                     <img src="{% static kino.image %}" alt="" >
+                     <p class="lo"><b>{{ kino.genre }}</b></p>
+                     <p class="lo">{{ kino.title }}</p></a>
+             </li>
+            {% endfor %}
+        </ul>
+        <br>
+    </div>
 {%  if is_paginated %}
-
+    <br>
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}

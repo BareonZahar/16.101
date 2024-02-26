@@ -8,11 +8,6 @@ body{
 
 }
 .content{
-
-    /*text-align: right;*/
-    width: 500px;
-    margin-left: 850px;
-    text-align: center;
     background-color: rgba(139, 0, 0, 0.25);
     border-radius: 50px ;
 
@@ -40,7 +35,7 @@ h1 {
 }
 
 /* Flickering animation */
-@keyframes flicker {
+@keyframes flicke {
 
   0%, 18%, 22%, 25%, 53%, 57%, 100% {
 
@@ -71,34 +66,50 @@ h1 {
   margin-top: 20px;
 }
 
-.menu{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    background-color: green;
-    line-height: 2em;
+.menu {
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px;
+  padding: 20px 20px;
+  background-color: #333;
+  border-radius: 10px;
 }
-.menu a{
-    text-decoration: none;
-    color: darkorange;
-    font-size: 1.5em;
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-size: 16px;
 }
-.menu a:hover{
-    background-color: yellow;
+
+.menu a:hover {
+  background-color:dimgray;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu a {
+    font-size: 14px;
+  }
 }
 
 .foto{
     position: absolute;
-
     margin-left: 550px;
     margin-top: -280px;
-
     border: 2px solid darkred;
     background-color: rgba(0, 128, 0, 0.34);
 }
 .foto img{
     margin-left: 50px;
-
 }
 h2{
     color: aquamarine;
@@ -108,21 +119,19 @@ p{
     color: azure;
 }
 .ok{
-    color: azure;
+    color: aqua;
     text-align: center;
     font-size: 35px;
-
 }
 .po{
     text-align: center;
     font-size: 35px;
-
+    color: aqua;
 }
 .lo{
     font-size: 25px;
     word-break:break-all;
     padding: 5px;
-
 }
 ul{
     text-align: center;
@@ -131,50 +140,51 @@ ul{
     color: darkorange;
     display:flex;
     justify-content:space-evenly;
-
 }
-/*.kat_film{*/
-/*    background-color: rgba(0, 128, 0, 0.68);*/
-/*    border-radius: 20px;*/
-/*    height: 50px;*/
-/*}*/
+
 li a{
     color:aqua;
     text-decoration: none;
-
 }
-li a:hover{
-    background-color: gold;
-    color: crimson;
-}
-/*.opis{*/
-    /*position: absolute;*/
-    /*margin-left: 500px;*/
-    /*margin-top: -550px;*/
-    /*width: 500px;*/
-    /*font-size: 25px;*/
-    /*color: burlywood;*/
-/*}*/
 .st{
     color:gold;
 }
 .actor_card{
+    border-radius: 20px;
+    margin: 0 20px;
+    background-color: rgba(139, 0, 0, 0.33);
+}
+.actor_card ul li{
     border: 2px solid darkorange;
     width: 200px;
+    height: 100%;
     background-color: rgba(100, 149, 237, 0.87);
+}
+.actor_card img{
+    width:100%;
+}
+.actor_card a img:hover{
+    transform: scale(0.95);
 }
 .pagination{
     margin: 0 auto;
     width: 60%;
-    text-align: center;
     background-color: gold;
     font-size: 35px;
+    border-radius: 10px;
+}
+.pagination span{
+    margin: 0 auto;
 }
 .katalog{
     text-align: center;
+    margin: 0 auto;
+    padding: 10px;
     font-size: 40px;
     color: lawngreen;
-    box-shadow: 0 15px blueviolet;
+    width: 30%;
+    background:  blueviolet;
+    border-radius: 10px;
 }
 .info_actor{
     margin: 0 auto;
@@ -185,16 +195,19 @@ li a:hover{
     font-size: 25px;
 }
 .info_actor b{
-    color: violet;
-    font-size: 25px;
+    color: darkslategrey;
+    font-size: 30px;
 }
-  /*Страница actor_detail*/
-
+.actor{
+    color: lime;
+}
 .pro{
     text-align: center;
-    margin-top: 50px;
+    margin: 0 auto;
     background-color: rgba(255, 255, 0, 0.84);
+    border-radius: 10px;
     padding: 30px;
+    width: 40%;
 }
 .pro b{
     font-size: 45px;
@@ -215,14 +228,11 @@ li a:hover{
     position: relative;
     padding-left: 50px;
     padding-right: 50px;
-
     background-color: rgba(47, 79, 79, 0.74);
 }
 .photo {
-
     width: 95%;
     position: absolute;
-    /*margin-left: auto; !* Помещаем изображение справа *!*/
 }
 .nazvan{
     margin-left: 50px;
@@ -247,11 +257,12 @@ li a:hover{
 .glav{
     text-align: center;
     background-color: rgba(47, 79, 79, 0.54);
+    color: red;
 }
 .glav1{
     text-align: center;
-    font-size: 35px;
-    color: gold;
+    font-size: 42px;
+    color: yellow;
     background-color: rgba(47, 79, 79, 0.54);
 }
 .glav2{
@@ -261,8 +272,7 @@ li a:hover{
     background-color: rgba(47, 79, 79, 0.54);
 }
 .opis{
-    margin-top: 0;
-
+    margin: 0 20px;
     text-align: center;
     justify-content:space-evenly;
     border: 2px solid blueviolet;
@@ -275,6 +285,7 @@ li a:hover{
     font-size: 30px;
     font-family: "Garamond", "Georgia", "serif";
     font-weight: 700;
+    padding: 0 100px;
 }
 i{
     color: blue;
@@ -283,12 +294,11 @@ b{
     color: lime;
 }
 .regh_ul{
+    border-radius: 20px;
+    margin: 0 20px;
     background-color: rgba(139, 0, 0, 0.33);
 }
 .regh{
-
-    /*overflow: hidden;*/
-    /*overflow: auto;*/
     width: 10%;
     background-color: rgba(255, 255, 0, 0.5);
     border-radius: 20px;
@@ -304,19 +314,18 @@ b{
 .reg_der{
     color: yellow;
     font-size: 30px;
-
 }
-.polz{
-    background-color: rgba(138, 43, 226, 0.3);
-    margin-left: 100px;
-    margin-top: -50px;
-    width: 600px;
-    text-align: center;
-    border-radius: 50px;
-}
-.polz h1{
-    color: azure;
-}
+/*.polz{*/
+/*    background-color: rgba(138, 43, 226, 0.3);*/
+/*    margin-left: 100px;*/
+/*    margin-top: -50px;*/
+/*    width: 600px;*/
+/*    text-align: center;*/
+/*    border-radius: 50px;*/
+/*}*/
+/*.polz h1{*/
+/*    color: azure;*/
+/*}*/
 .per{
     text-decoration: none;
     font-size: 35px;
@@ -331,7 +340,6 @@ b{
     color: darkmagenta;
 }
 .card1{
-    /*position: absolute;*/
     text-decoration: none;
     background-color: rgba(255, 255, 0, 0.5);
     color: green;
@@ -345,7 +353,6 @@ h4{
     background-color: rgba(0, 255, 255, 0.58);
     margin-left: 200px;
     margin-right: 200px;
-
 }
 .ganry button{
     background-color: yellow;
@@ -353,26 +360,22 @@ h4{
     color: darkgreen;
 }
 .ganry button:hover{
-     transform: rotate(25deg);
+     transform: rotate(15deg);
 }
 .ganry h1{
     color: darkred;
     background-color: rgba(0, 128, 0, 0.71);
 }
 .ganry h2{
-
    color:indigo;
     font-size: 17px;
 }
 .ganry img{
-
     text-align: center;
 }
-.video-js{
-    position: absolute;
-    display: flex;
-    margin-top: -520px;
-    margin-left: 200px;
+video {
+  max-width: 100%;
+  height: auto;
 }
 .film{
     font-size: 25px;

@@ -1,3 +1,4 @@
+
 table{
     background-color: dimgray;
     color: yellow;
@@ -6,7 +7,7 @@ table{
     text-align: center;
 }
 form{
-   background-color: darkorange;
+    background-color: darkorange;
     font-size: x-large;
     display: flex;
     justify-content: center;
@@ -17,7 +18,7 @@ input{
 input:hover{
     background-color: blue;
     color: yellow;
-    transform: skew(25deg);
+    transform: skew(15deg);
 }
 .neonTe {
   animation: flicker 1.5s infinite alternate;

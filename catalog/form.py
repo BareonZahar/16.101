@@ -7,10 +7,12 @@ from django.contrib.auth.models import User
 
 
 class SignUpform(UserCreationForm):
-    username = forms.CharField(label='логин', help_text='Придумайте слово более 5 букв')
-    password1 = forms.CharField(label='пароль', help_text='Пароль'
-                                , widget=forms.PasswordInput(attrs={'autocomplete': "new-password"}))
-    password2 = forms.CharField(label='подтверждение', help_text='Повторите пароль'
+    username = forms.CharField(label='логин')
+    password1 = forms.CharField(label='пароль'
+                                , widget=forms.PasswordInput(attrs=
+                                 {'autocomplete': "new-password", 'placeholder': 'пароль >= 8 символов'}))
+
+    password2 = forms.CharField(label='повторите пароль'
                                 , widget=forms.PasswordInput(attrs={'autocomplete': "new-password"}))
     email = forms.EmailField(label='почта', widget=forms.TextInput(attrs={'placeholder': "qwe@gmail.ru"}))
     first_name = forms.CharField(label='имя', max_length=20)
