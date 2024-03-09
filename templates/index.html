@@ -6,9 +6,11 @@
     {% if not request.user.is_authenticated %}
        <div class="row" style=" background-color: rgba(139, 0, 0, 0.25); border-radius: 50px;margin: 0 20px">
                <div class="col-sm-6" style="text-align: center;margin: auto">
+                   <br>
                     <div class="video-js">
-                        <video  autoplay loop controls="controls" muted poster="{% static "img/kon.jpg" %} "></video>
+                        <video  autoplay loop controls="controls" muted poster="{% static "img/kon.jpg" %} " width="70%"></video>
                     </div>
+                   <br>
                </div>
                <div class="col-sm-6"style="text-align: center">
                    <br>
@@ -61,5 +63,6 @@
        </div>
     <br>
     {% endif %}
-
+    <br>
+    <br>
 {% endblock content %}

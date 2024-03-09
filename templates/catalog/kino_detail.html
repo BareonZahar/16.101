@@ -2,10 +2,11 @@
 {% load static %}
 {% block content %}
     <br>
+
     <div style="padding: 0 20px">
         <h2 class="glav1">Фильм</h2>
            <h2 class="glav1"><b>{{ kino.title }}</b></h2>
-              <h2 class="glav">Режисер: <i>{{ kino.director }}</i></h2>
+              <h2 class="glav">Режисер: <i>{{kino.director }}</i></h2>
                   <h2 class="glav">Рейтинг: <b>{{ kino.ager }}</b></h2>
                     <h2 class="glav2">Уровень подписки: <i>{{ kino.status }}</i></h2>
                         <h2 class="glav">Актеры: <b>{{ kino.display_actors }}</b></h2>
@@ -13,12 +14,64 @@
     <br>
             <div class="opis">
                 <br>
-                <h2><i>Описание:</i></h2>
-                    <p class="krat">{{ kino.summary }}</p>
+                <p><button class="butotziv" onclick="f1()">Оставить отзыв</button></p>
+                <h2><i style="color:burlywood;">Описание:</i></h2>
+                    <p class="krat">{{kino.summary }}</p>
                         <img src="{% static kino.image %}" alt="" width="350">
+
                     <br>
                 <br>
             </div>
     <br>
     <br>
+           <!----------------- Модальное окно для комментария ------------------->
+<div class="modal fade" id="newcomment" tabindex="-1" role="dialog" aria-labelledby="varModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #00ffaa">
+               <h4 class="modal-title-color-success" style=" margin: 0 auto;color: coral">Напишите свой отзыв о фильме</h4>
+                <button type="button" class="close" data-bs-dismiss="modal"
+                        aria-label="Close" style="border-radius: 20px;
+                        padding: 0 10px;background: #333333;color: red;font-size: xx-large">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body bg-primary">
+                    <div class="prov_comit" style="text-align: center">
+{#                         <form action="" method="post" class="comit_forma">#}
+                        {{ kino_object.pk }}
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {% for f in forma %}
+                               <table>
+                                    {{ f.as_widget }}
+                                </table>
+                            {% endfor %}
+                                    <input  class="btn btn-success " type="submit" value="Отправить">
+                         </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="opis">
+<p>Здесь будут ваши комментарии о фильме</p>
+    <hr>
+    {% for i in  comentarios%}
+{#        <a class="likes" href="{% url 'meep_like' pk=i.pk %}"><b>{{ i.number_of_likes }}</b>&#128077;</a>#}
+{#         <a class="likes" href="{% url 'meep_like' pk=i.pk %}"><b>{{ i.number_of_likes }}</b>&#128078;</a>#}
+        <p>Вам нравиться фильм или нет поставте лайк</p>
+    <a href="{% url 'like_commentary' pk=i.id %}" class="btn btn-primary"><b>{{ i.number_of_liked }}</b>&#128077;</a>
+    <a href="{% url 'dislike_commentary' pk=i.id %}" class="btn btn-danger"><b>{{ i.number_of_disliked }}</b>&#128078;</a>
+
+        <p>{{ i.user }} | {{ i.time_created }}</p>
+{#        <p>{{ i.time_created }}</p>#}
+        <p>{{ i.body }}</p>
+        <hr>
+    {% endfor %}
+</div>
+    <br>
+    <br>
+
 {% endblock %}

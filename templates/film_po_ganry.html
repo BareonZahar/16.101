@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <br>
+     {% for g in k2 %}
+    <div style="padding: 0 20px">
+        <h2 class="glav1">Фильм</h2>
+           <h2 class="glav1"><b>{{ g.title }}</b></h2>
+              <h2 class="glav">Режисер: <i>{{ g.director }}</i></h2>
+                  <h2 class="glav">Рейтинг: <b>{{ g.ager }}</b></h2>
+                    <h2 class="glav2">Уровень подписки: <i>{{ g.status }}</i></h2>
+                        <h2 class="glav">Актеры: <b>{{ g.display_actors }}</b></h2>
+        </div>
+    <br>
+            <div class="opis">
+                <br>
+                <h2><i>Описание:</i></h2>
+                    <p class="krat">{{ g.summary }}</p>
+                        <img src="{% static g.image %}" alt="" width="350">
+                    <br>
+                <br>
+            </div>
+     {% endfor %}
+    <br>
+    <br>
+{% endblock %}

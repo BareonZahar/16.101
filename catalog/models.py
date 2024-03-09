@@ -10,6 +10,9 @@ class Genre(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('pro_ganry', args=[str(self.id)])
+
     class Meta:
         verbose_name = 'Жанр'
         verbose_name_plural = 'Жанры'
@@ -112,7 +115,8 @@ class Kino(models.Model):
     display_actors.short_description = 'Актеры'
 
     def get_absolute_url(self):
-        return reverse('info', kwargs={'pk': self.pk, 'title': self.title})
+        # return reverse('info', kwargs={'pk': self.pk, 'title': self.title})
+        return reverse('info', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = 'Фильм'
@@ -121,16 +125,26 @@ class Kino(models.Model):
 
 
 class Commentary(models.Model):
-    STATUS_CHOICES = (
-        ('draft', 'Draft'),
-        ('published', 'Published'),
-    )
     post = models.ForeignKey(Kino, on_delete=models.CASCADE, related_name='comments', verbose_name='Комментарий')
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Пользователь')
-    like = models.IntegerField(null=True, blank=True, verbose_name='Количество лайков')
     body = models.TextField(max_length=1000, null=True, blank=True, verbose_name='Текст')
     time_created = models.DateTimeField(auto_now_add=True, null=True, blank=True, verbose_name='Время создания')
-    publish = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft', verbose_name='Видимость поста')
+    publish = models.BooleanField(default=True, verbose_name='Видимость поста')
+    #  --------------  Теперь добавим лайки --------------------------
+    likes = models.ManyToManyField(User, related_name="meep_like", blank=True, verbose_name='Лайки')
+    liked = models.ManyToManyField(User, related_name='liked_commentaries')
+    disliked = models.ManyToManyField(User, related_name='disliked_commentaries')
+
+    # ---------------   Отслеживаем количество лайков -------------------
+    # def number_of_likes(self):
+    #     return self.likes.count()
+
+    # ---------------   Отслеживаем количество лайков -------------------
+    def number_of_liked(self):
+        return self.liked.count()
+
+    def number_of_disliked(self):
+        return self.disliked.count()
 
     class Meta:
         verbose_name = 'Комментарий'
@@ -138,7 +152,116 @@ class Commentary(models.Model):
         ordering = ['-time_created']
 
     def get_absolute_url(self):
-        return reverse('post', kwargs={'id': self.post.id})
+        return reverse('commentar', kwargs={'pk': self.pk})
+
+    # def get_absolute_url(self):
+    #     if self.pk:
+    #         return reverse('commentar', kwargs={'pk': self.post.pk})
+    #     # Если pk пусто или None, можете вернуть другой URL или None
+    #     return None
+    # def get_absolute_url(self):
+    #     if self.pk and self.post.pk:
+    #         print(f'pk value: {self.pk}', 'opopop')
+    #         return reverse('commentar', kwargs={'pk': self.post.pk})
+    #     return None
+    # def get_absolute_url(self):
+    #     if self.pk and self.post.pk:
+    #         print(f'pk value: {self.pk}', 'opopop')
+    #         try:
+    #             comment = Commentary.objects.get(pk=1)
+    #             url = comment.get_absolute_url()
+    #             print(url)
+    #             return reverse('commentar', kwargs={'pk': self.post.pk})
+    #         except Commentary.DoesNotExist:
+    #             print("Commentary object with pk=1 does not exist")
+    #     return None
 
     def __str__(self):
         return self.body
+
+class Likes(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Пользователь')
+    comit = models.ForeignKey(Kino, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Комментарий фильма')
+    like_comment = models.BooleanField(verbose_name='Оценка товара')  # True - лайк, False - дизлайк
+
+    # def __str__(self):
+    #     return self.like_comment
+    def __str__(self):
+        return f'{self.user} - {self.comit}: {"Лайк" if self.like_comment else "Дизлайк"}'
+
+    def get_absolute_url(self):
+        return reverse('like', kwargs={'id': self.id})
+
+    class Meta:
+        verbose_name = 'Лайк'
+        verbose_name_plural = 'Лайки'
+
+class VisitsCounter(models.Model):
+    url = models.CharField(max_length=200, null=True, blank=True, verbose_name='Адресс сайта')
+    count = models.IntegerField(default=0, null=True, blank=True, verbose_name='Счетчик посещений')
+
+    def __str__(self):
+        return f"{self.url} - {self.count} visits"
+
+
+# # ------------  Пробуем создать лайки  вот с лайки с твитера  -----------------
+# class Meep(models.Model):
+#     user = models.ForeignKey(User, related_name="meeps", on_delete=models.DO_NOTHING)
+#     body = models.CharField(max_length=200)
+#     create_at = models.DateTimeField(auto_now_add=True)
+# #  --------------  Теперь добавим лайки --------------------------
+#     likes = models.ManyToManyField(User, related_name="meep_like", blank=True)
+#
+# # ---------------   Отслеживаем количество лайков -------------------
+#     def number_of_likes(self):
+#         return self.likes.count()
+
+
+
+#  #  -----  Можно попробывать такой вариант лайк дизлайк -------------
+# class Commentary(models.Model):
+#     post = models.ForeignKey(Kino, on_delete=models.CASCADE, related_name='comments', verbose_name='Комментарий')
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Пользователь')
+#     body = models.TextField(max_length=1000, null=True, blank=True, verbose_name='Текст')
+#     time_created = models.DateTimeField(auto_now_add=True, null=True, blank=True, verbose_name='Время создания')
+#     publish = models.BooleanField(default=True, verbose_name='Видимость поста')
+#     hot = models.ManyToManyField(User, related_name='forhot', verbose_name='Добавить лайк')
+#     n_not = models.ManyToManyField(User, related_name='forhot', verbose_name='Удалить лайк')
+#
+#  #  ----------  Во views пишем  ---------------------
+#
+# def hot(request, id):
+#     currentComit = Commentary.objects.get(id=id)
+#     currentUser = request.user
+#     # ----------------------   Логика дабовления горячего  --------------------
+#     for i in currentComit.hot.all():
+#         if i == currentUser:
+#             currentComit.hot.remove(currentUser)
+#             break
+#         else:
+#             for i in currentComit.n_not.all():
+#                 if i == currentUser:
+#                     currentComit.n_not.remove(currentUser)
+#                     break
+#                 else:
+#                     currentComit.hot.add(currentUser)
+#     return redirect('info')
+#
+#
+# def n_not(request, id):
+#     currentComit = Commentary.objects.get(id=id)
+#     currentUser = request.user
+#     # ----------------------   Логика дабовления горячего  --------------------
+#     for i in currentComit.n_not.all():
+#         if i == currentUser:
+#             currentComit.n_not.remove(currentUser)
+#             break
+#         else:
+#             for i in currentComit.hot.all():
+#                 if i == currentUser:
+#                     currentComit.hot.remove(currentUser)
+#                     break
+#                 else:
+#                     currentComit.n_not.add(currentUser)
+#     return redirect('info')
+

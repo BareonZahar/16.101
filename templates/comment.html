@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        <!----------------- Модальное окно для комментария ------------------->
+<div class="modal fade" id="newcomment" tabindex="-1" role="dialog" aria-labelledby="varModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+               <h4 class="modal-title">Напишите свой отзыв о фильме</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                    <div class="modal-body">
+                        <div class="prov_comit">
+                          <br>
+                             <h1 class="oct">Оставьте комментарий</h1>
+                                <br>
+                                     <form action="" method="post" class="comit_forma">
+                                        {% csrf_token %}
+                                           <table>
+                                                {{ forma }}
+                                            </table>
+                                                <input  class="otpr" type="submit" value="Отправить">
+                                        {% for p in tov %}
+                                            <p class="nazad"><a href="#">&#10006;</a></p>
+                                        {% endfor %}
+                                     </form>
+                        </div>
+                    </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary">Опубликовать</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

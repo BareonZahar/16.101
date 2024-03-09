@@ -1,6 +1,10 @@
 body{
     position: relative;
 }
+.one{
+    text-align: center;
+    color: yellow;
+}
 .user{
     text-align: center;
     background-color: rgba(255, 255, 0, 0.71);
@@ -24,23 +28,21 @@ body{
     font-family:Arial;
     background-color: rgba(0, 255, 255, 0.71);
 }
-a{
+.podpiska a{
     text-decoration: none;
     font-size: 25px;
-    color: crimson;
+    color: yellow;
 }
-a:hover{
-    text-decoration: none;
-    color: crimson;
-}
+
 i{
     font-size: 35px;
+    color: yellow;
 }
-.navbar-nav a:hover{
+.podpiska a:hover{
     text-decoration: none;
-    color: crimson;
+    color: coral;
     font-size: 26px;
-    width: 100px;
+
 }
 b{
     color: darkblue;
@@ -49,3 +51,4 @@ b{
 p{
     font-size: 20px;
 }
+

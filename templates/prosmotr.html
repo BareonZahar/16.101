@@ -10,8 +10,12 @@
 {% endblock %}
 
 {% block content %}
-    <h3>Фильм --<b>{{ kino }}</b></h3>
-       <h2>Приятного просмотра</h2>
+    <br>
+    <h2 class="katalog">Фильм</h2>
+        <h3 class="katalog"><b>{{ kino }}</b></h3>
+    <br>
+       <h2 class="pripro">Приятного просмотра</h2>
+    <br>
             <div class="screen">
                 {% if prava %}
 
@@ -24,10 +28,12 @@
 {#                      </video>#}
 
                 {% else %}
+                    <br>
                       <h4>Купите подписку</h4>
+                    <br>
                 {% endif %}
 
-
+                <br>
                 {% if not prava%}
                      {% if user.groups.all.0.id == 1%}
                            <h4><a href="{% url 'kuppodpiska' %}">Купить базовую</a></h4>
@@ -37,8 +43,10 @@
                      {% endif %}
                 {% endif %}
           </div>
-    <h3> ваша подписка -- <b>{{ status }}</b></h3>
-    <h3> для фильма -- <b>{{ statuskino }}</b></h3>
+    <br>
+    <h3 class="podpi"> Ваша подписка -- <b>{{ status }}</b></h3>
+    <br>
+    <h3 class="podpi"> Для фильма -- <b>{{ statuskino }}</b></h3>
 
 {#    {% if not prava %}#}
 {#        {% if user.username%}#}

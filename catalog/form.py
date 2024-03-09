@@ -49,9 +49,18 @@ class SignUpform(UserCreationForm):
         return user
 
 
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Commentary
+        fields = ['body']
+        widgets = {
+            'body': forms.Textarea(attrs={'cols': 80, 'rows': 6, 'class': 'mod_css'}),
+        }
 
-
-
+class LikeForm(forms.ModelForm):
+    class Meta:
+        model = Likes
+        fields = ['like_comment']
 
 # class CommentForm(forms.ModelForm):
 #     class Meta:

@@ -166,6 +166,27 @@ li a{
 .actor_card a img:hover{
     transform: scale(0.95);
 }
+
+/* Для экранов шириной до 968px */
+@media (max-width: 968px) {
+  .actor_card ul li {
+    width: 150px;
+  }
+}
+
+/* Для экранов шириной до 676px */
+@media (max-width: 626px) {
+  .actor_card ul li {
+    width: 100px;
+  }
+}
+/* Для экранов шириной до 576px */
+@media (max-width: 576px) {
+  .actor_card ul li {
+    width: 70px;
+  }
+}
+
 .pagination{
     margin: 0 auto;
     width: 60%;
@@ -184,6 +205,24 @@ li a{
     color: lawngreen;
     width: 30%;
     background:  blueviolet;
+    border-radius: 10px;
+}
+.pripro{
+     text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 35px;
+    width: 30%;
+    background:lightseagreen;
+    border-radius: 10px;
+}
+.podpi{
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 35px;
+    width: 30%;
+    background:lightseagreen;
     border-radius: 10px;
 }
 .info_actor{
@@ -384,6 +423,11 @@ video {
 .film:hover{
     color: lightseagreen;
     font-size: 30px;
+}
+.comit_forma table tr td{
+    background: violet;
+    color: saddlebrown;
+    text-align: center;
 }
 
 

@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/podpiska.css' %}" type="text/css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://bootstraptema.ru/plugins/jquery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/kino.js' %}" defer></script>
+
 
 {%  block head %}
 
@@ -21,25 +24,79 @@
 
 {% block menu %}
 
-       <div class="menu">
-           <a href="{% url 'home' %}">Главная</a>
-           <a href="{% url 'ganry' %}">Жанры</a>
-       {% if username == 'Захар' %}
-           <a href="{% url 'admin:index' %}">Админ</a>
-       {% endif %}
-           <a href="{% url 'allkino' %}">Фильмы</a>
-           <a href="{% url 'actor' %}">Актеры</a>
-           <a href="{% url 'director' %}">Режиссеры</a>
-           <a href="{% url 'status' %}">Каталог-фильмов</a>
-           <a href="{% url 'kuppodpiska' %}">Купить-подписку</a>
+{#       <div class="menu">#}
+{#           <a href="{% url 'home' %}">Главная</a>#}
+{#           <a href="{% url 'ganry' %}">Жанры</a>#}
+{#       {% if username == 'Захар' %}#}
+{#           <a href="{% url 'admin:index' %}">Админ</a>#}
+{#       {% endif %}#}
+{#           <a href="{% url 'allkino' %}">Фильмы</a>#}
+{#           <a href="{% url 'actor' %}">Актеры</a>#}
+{#           <a href="{% url 'director' %}">Режиссеры</a>#}
+{#           <a href="{% url 'status' %}">Каталог-фильмов</a>#}
+{#           <a href="{% url 'kuppodpiska' %}">Купить-подписку</a>#}
+{##}
+{#               {% if not user.username %}#}
+{#                    <a href="{% url 'login' %}">Войти</a>#}
+{#               {% else %}#}
+{#                    <a href="{% url 'logout' %}">Выйти</a>#}
+{#               {% endif %}#}
+{#       </div>#}
 
-               {% if not user.username %}
-                    <a href="{% url 'login' %}">Войти</a>
-               {% else %}
-                    <a href="{% url 'logout' %}">Выйти</a>
-               {% endif %}
-       </div>
+<nav class="navbar navbar-expand-xl bg-dark navbar-dark justify-center fixed-top">
+ <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Главная</a>
+        </li>
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="{% url 'ganry' %}" role="button" data-bs-toggle="dropdown">Жанры</a>
+                  <ul class="dropdown-menu">
+                      {% for c in ganry %}
+                    <li><a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+                      {% endfor %}
+                  </ul>
+                </li>
+        <li class="nav-item">
+             {% if username == 'Захар' %}
+          <a class="nav-link" href="{% url 'admin:index' %}">Админ</a>
+             {% endif %}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'allkino' %}">Фильмы</a>
+        </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'actor' %}">Актеры</a>
+        </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'director' %}">Режиссеры</a>
+        </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'status' %}">Каталог-фильмов</a>
+        </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'kuppodpiska' %}">Купить-подписку</a>
+        </li>
 
+      <li class="nav-item">
+       {% if not user.username %}
+          <a class="nav-link" href="{% url 'login' %}">Войти</a>
+       {% else %}
+          <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+         {% endif %}
+        </li>
+          <li class="nav-item">Счетчик посещений сайта: {{ counter }}</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <br>
+    <br>
+    <br>
 {% endblock menu %}
 
 {% block  sentr %}

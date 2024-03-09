@@ -55,21 +55,67 @@ h1{
     border-radius: 10px;
     color: saddlebrown;
 }
-button{
+.but{
     margin-bottom: 20px;
+    border-radius: 10px;
     background-color: yellow;
     font-size: 25px;
     font-weight: 700;
     color: blue;
     font-family: "Arial Black";
 }
-button:hover{
+.but:hover{
     background-color: forestgreen;
     color: yellow;
 }
-
+.opis .butotziv{
+    border-radius: 10px;
+    background-color: coral;
+    font-size: 25px;
+    font-weight: 700;
+    color: blue;
+    font-family: "Arial Black";
+}
+.opis .butotziv:hover{
+    background-color: blue;
+    color: yellow;
+}
 /*css Для видео */
 iframe{
     aspect-ratio: 16/9;
     width: 100%;
 }
+.opis .likes{
+    background: #333333;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+/*.mod_css{*/
+/*    border: 1px solid #ccc;*/
+/*    padding: 10px;*/
+/*    border-radius: 5px;*/
+/*    display: flex; !* Использование flexbox для центрирования по вертикали и горизонтали *!*/
+/*    justify-content: center; !* Центрирование по горизонтали *!*/
+/*    align-items: center; !* Центрирование по вертикали *!*/
+/*    !*height: 100vh; !* Установка высоты блока во всю высоту видимой области *!*!*/
+/*}*/
+.modal-body.bg-primary {
+       display: flex;
+       justify-content: center;
+      align-items: center;
+   }
+
+
+/*.prov_comit {*/
+/*        width: 80%; !* Задайте желаемую ширину текстового поля *!*/
+/*        max-width: 100%; !* Ограничивает максимальную ширину текстового поля *!*/
+/*        max-height: 100%; !* Ограничивает максимальную высоту текстового поля *!*/
+/*    }*/
+
+   /*----------------  Вот так не дает выходить из границ textarea   --------------------*/
+.prov_comit textarea {
+        box-sizing: border-box; /* Учитывает отступы и границы внутри размеров элемента */
+        width: 100%; /* Задайте 100% ширины текстового поля */
+        max-height: 100%; /* Ограничивает максимальную высоту текстового поля */
+    }

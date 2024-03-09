@@ -35,3 +35,8 @@ h2{
     font-size: 35px;
     color: deeppink;
 }
+a .otziv {
+    background-color: yellow;
+    font-size: 30px;
+    border-radius: 10px;
+}
