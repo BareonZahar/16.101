@@ -35,12 +35,10 @@ def index(req):
         # Создаем объект VisitsCounter для текущей страницы
     counter, created = VisitsCounter.objects.get_or_create(url=req.path, defaults={'count': 0})
 
-    # Увеличиваем счетчик
-
     if created:
         counter.count = 1
     else:
-        # Increment the counter
+        # Увеличиваем счетчик
         counter.count += 1
     counter.save()
 
@@ -578,6 +576,62 @@ def dislike_commentary(request, pk):
         commentary.disliked.add(request.user)
     # commentary.save()  Можно и с ним но и так работает
     return redirect('info', pk=commentary.post.pk)
+
+
+ # -------------  Функция для liked disliked  из " myshop " пробные  ----------------
+# def like_commentary(request, pok_slug):
+#     # commentary = Comment.objects.get(comit__slug=pok_slug)
+#     commentary = Comment.objects.filter(comit__slug=pok_slug).order_by('time_creat').first()
+#     if request.user in commentary.liked.all():
+#         commentary.liked.remove(request.user)
+#     elif request.user in commentary.disliked.all():
+#         commentary.disliked.remove(request.user)
+#         commentary.liked.add(request.user)
+#     else:
+#         commentary.liked.add(request.user)
+#     return redirect('pokaz', pok_slug=commentary.comit.slug)
+
+# def like_commentary(request, pok_slug):
+#     commentary = Comment.objects.filter(comit__slug=pok_slug)
+#     if commentary:
+#         if request.user in commentary.liked.all():
+#             commentary.liked.remove(request.user)
+#         elif request.user in commentary.disliked.all():
+#             commentary.disliked.remove(request.user)
+#             commentary.liked.add(request.user)
+#         else:
+#             commentary.liked.add(request.user)
+#         return redirect('pokaz', pok_slug=commentary.comit_id)
+#     else:
+#         return redirect('pokaz', pok_slug=commentary.comit_id)
+#
+#
+# def dislike_commentary(request, pok_slug):
+#     commentary = Comment.objects.filter(comit__slug=pok_slug)
+#     if commentary:
+#         if request.user in commentary.disliked.all():
+#             commentary.liked.remove(request.user)
+#         elif request.user in commentary.liked.all():
+#             commentary.disliked.remove(request.user)
+#             commentary.liked.add(request.user)
+#         else:
+#             commentary.liked.add(request.user)
+#         return redirect('pokaz', pok_slug=commentary.comit_id)
+#     else:
+#         return redirect('pokaz', pok_slug=commentary.comit_id)
+
+# def dislike_commentary(request, pok_slug):
+#     # commentary = Comment.objects.get(comit__slug=pok_slug)
+#     commentary = Comment.objects.filter(comit__slug=pok_slug).order_by('time_creat').first()
+#     # commentary = Comment.objects.filter(comit__slug=pok_slug, user=request.user)
+#     if request.user in commentary.disliked.all():
+#         commentary.disliked.remove(request.user)
+#     elif request.user in commentary.liked.all():
+#         commentary.liked.remove(request.user)
+#         commentary.disliked.add(request.user)
+#     else:
+#         commentary.disliked.add(request.user)
+#     return redirect('pokaz', pok_slug=commentary.comit.slug)
 
 
 
